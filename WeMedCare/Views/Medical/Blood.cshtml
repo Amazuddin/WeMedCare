@@ -1,0 +1,73 @@
+﻿
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Blood</title>
+    <style>
+        .j{
+            height: 520px;
+            width: 100%;
+        }
+        .colde {
+            height: 100px;
+            margin-top: 30px;
+        }
+        .bloodinfo {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        #bloodservices {
+            font-size: 50px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+            margin-top: 15px;
+        }
+        .aaa {
+            font-size: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="img_blood">
+        <img class="j" src="~/Content/picture/bl.png"/>
+</div><br/>
+    <div class="container">
+        <div class="bloodinfo">
+            <center>
+                <div class="animated slideInLeft">
+                    <strong id="bloodservices" class="animated shake">Blood Information</strong>
+                </div>
+
+            </center>
+
+        </div>
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2 colde">
+            <a href="@Url.Action("BloodDonorRegistration", "Medical")">
+            <button type="button" class="btn btn-outline-success aaa"><b>Donor registration Form</b></button>
+                </a>
+</div>
+        <div class="col-md-2 colde">
+            <a href="@Url.Action("BloodDonorList", "Medical")">
+
+                <button type="button" class="btn btn-outline-danger aaa"><b>Donor information List</b></button>
+            </a>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<div>
+</div>
+</body>
+</html>

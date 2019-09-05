@@ -1,0 +1,157 @@
+﻿@using WeMedCare.Models
+
+@{
+    // Layout = null;
+    List<BloodModel> blood = ViewBag.bloodlist;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BloodDonorList</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <style>
+        .lebeldesign {
+            float: left;
+            margin-left: 1px;
+            font-size: 18px;
+            color: #1b2631;
+          
+        }
+
+        #bloodid {
+            float: right;
+            margin-right: 3px;
+            width: 230px;
+            height: 40px;
+            border-radius: 20px;
+            border: 4px solid #2c3e50;
+        }
+
+        .coldesign {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            height: inherit;
+            background-color: #f7f9f9;
+            padding-top: 15px;
+        }
+
+        .design {
+            border-radius: 20px;
+            background-color: #fbfcfc;
+            margin-top: 100px;
+            height: inherit;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: -1px 2px 18px #9191b6;
+        }
+
+            .design:hover {
+                box-shadow: -1px 2px 18px #9191b6;
+            }
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 100%;
+            background: url("/Content/picture/bbb.png")no-repeat center top;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            min-height: 747px;
+            background-attachment: fixed;
+        }
+        .hi {
+            margin-top: 100px;
+        }
+        .bye {
+            margin-bottom: 100px;
+        }
+       
+    </style>
+</head>
+<body>
+    @*<div class="img_hospital">
+        <img src="~/Content/picture/blo.jpg" height="500px;" width="100%;">
+    </div><br />*@
+    <div class="container">
+        <div class="row hi">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 coldesign">
+                <center>
+                    <form method="POST">
+
+                        <label class="lebeldesign"><b>Blood Group</b></label>
+                        <select id="bloodid" name="bloodid">
+
+                            <option value="">SELECT</option>
+                            @foreach (BloodModel bl in blood)
+                            {
+                                <option value="@bl.id">@bl.bloodGroup</option>
+                            }
+                        </select><br /><br />
+                    </form>
+                </center>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    <div class="row bye">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 design">
+            <table class="table table-bordered table-striped table-hover" id="donortable">
+                <thead>
+                <tr>
+                    <th>Donor Name</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+        </div>
+</body>
+</html>
+@section scripts
+{
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#donortable').DataTable();
+
+            $('#bloodid').on('change', function () {
+                var deptId = $('#bloodid').val();
+
+                table.clear().draw(false);
+                var json = { id: deptId };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllDonorInfoById", "Medical")',
+                    contentType: 'application/json',
+                    data: JSON.stringify(json),
+                    success: function (response) {
+                        $.each(response, function (key, value) {
+                            
+                            table.row.add([
+                                value.donorName,
+                                value.number,
+                                value.address
+
+                            ]).draw(false);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

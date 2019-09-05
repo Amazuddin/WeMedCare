@@ -1,0 +1,124 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+    List<SpecialistModel> specialist = ViewBag.specialistlist;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Appointment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="~/Content/appointment.css" rel="stylesheet" />
+</head>
+<body>
+<div >
+    <h1> Medical Appointment Form </h1>
+    <div class="bg-agile">
+        <div class="book-appointment">
+            <h2>Make an appointment</h2>
+            <form action="#" method="POST">
+                <div class="left-agileits-w3layouts same">
+                    <div class="gaps">
+                        <p>Patient Name</p>
+                        <input type="text" id="patientName" name="patientName" placeholder="" required="" />
+                    </div>
+                    <div class="gaps">
+                        <p>Phone Number</p>
+                        <input type="text" id="number" name="number" placeholder="" required="" />
+                    </div>
+                    <div class="gaps">
+                        <p>Email</p>
+                        <input type="email" id="email" name="email" placeholder="" required=""/>
+                    </div>
+                    <div class="gaps">
+                        <p>Select Date</p>
+                        <input id="datepicker1" name="date" type="text" value=""
+                               onfocus="this.value = '';" onblur="    if (this.value == '')
+                                { this.value = 'yyyy/mm/dd'; }" required="">
+                    </div>
+                </div>
+                <div class="right-agileinfo same">
+                    
+                    <div class="gaps">
+                        <p>Department</p>
+                        <select class="form-control" id="SpecialistId" name="SpecialistId">
+                            <option value="">SELECT</option>
+                            @foreach (SpecialistModel sp in specialist)
+                            {
+                                <option value="@sp.SpecialistId">@sp.Specialist</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="gaps">
+                        <p>Doctor Name</p>
+                        <select class="form-control" id="id" name="id">
+                            <option value="">SELECT</option>
+                        </select>
+                    </div>
+                    <div class="gaps">
+                        <p>Gender</p>
+                        <select class="form-control" id="sex" name="sex">
+                            <option></option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                   
+                </div>
+                <div class="clear"></div>
+                <input type="submit" value="Make an appointment" id="Appointment" >
+            </form>
+        </div>
+    </div>
+</div>
+
+   
+
+
+
+    @section scripts
+    {
+
+
+        <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+        <script src="~/Scripts/wickedpicker.js"></script>
+        <link href="~/Content/jquery-ui.css" rel="stylesheet"/>
+        <script src="~/Scripts/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
+            });
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $('#SpecialistId').on('change', function() {
+
+                    var deptId = $('#SpecialistId').val();
+                    console.log(deptId);
+                    $('#id').empty();
+                    $('#id').append('<option value="">SELECT</option>');
+                    var json = { id: deptId };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetAllDoctorNameById", "Medical")',
+                        contentType: 'application/json',
+                        data: JSON.stringify(json),
+                        success: function(response) {
+                            $.each(response, function(key, value) {
+                                $('#id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+
+                });
+            });
+
+        </script>
+    }
+</body>
+</html>

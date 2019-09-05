@@ -1,0 +1,142 @@
+﻿
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tutorial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/aos.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        .plan {
+            min-height: 380px;
+            margin: 15px;
+            padding: 0px;
+        }
+
+        .plan-1 {
+            text-align: justify;
+            font-size: 20px;
+            min-height: inherit;
+            margin: 15px;
+            padding: 0px;
+        }
+
+         .tutorial {
+             height: 600px;
+            
+             background-image: url('/Content/picture/ttt.png');
+             display: block;
+             color: black;
+             text-align: center;
+             background-size: cover;
+             background-repeat: no-repeat;
+         }
+        .owak {
+            margin-top: 170px;
+           
+            font-size: 50px;
+           
+        }
+        .ok {
+            margin-top: 4px;
+            
+            font-size: 35px;
+            color: white
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12 tutorial">
+            <div class="animated bounceIn">
+                <h1 class="owak ">
+                    <b>
+                        Patient & Visitor Guide
+                    </b>
+                </h1>
+            </div>
+
+            <h2 class="ok"><strong>Everything you need to know <br>about getting care at WeMedCare</strong>
+            </h2>
+        </div>
+    </div><br><br>
+
+    
+<div class="container">
+    <div class="row" data-aos="fade-left" data-aos-duration="1500">
+        <div class="col-md-6">
+            <div class="plan">
+                <img src="~/Content/picture/reg.jpg" width="100%" height="380px;">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="plan-1">
+                <h3 ><b>Registration</b></h3>
+                <p>
+                    Patient registration is the concept and set of methods needed to correlate the reference position
+                    of a virtual 3D dataset gathered by computer medical imaging with the reference position of the patient.
+                    If a patient want appoint adoctor he/she should be registered.If they don't complte there registration they
+                    can't appoint a doctor.When doing registration the password should be consist of 8-10 word or number.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row " data-aos="fade-right" data-aos-duration="1500">
+        <div class="col-md-6">
+            <div class="plan-1">
+                <h3><b>All about appointments</b>
+                </h3>
+                <p>
+                    In the phrase "doctor appointment" or "doctors appointment" the word doctor serves as a descriptive adjective
+                    that describes what kind of an appointment it is. ... In the phrase "doctor's appointment" or "doctors' appointment"
+                    the possessive form of doctor shifts the emphasis away from appointment.Paitent can choose the doctor and after filling
+                    up a online form appoint a doctor.If the appointment is complete it will give a confirmation message
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="plan">
+                <img src="~/Content/picture/appoint.jpg" width="100%" height="380px;">
+            </div>
+        </div>
+    </div>
+    <div class="row" data-aos="fade-left" data-aos-duration="1500">
+        <div class="col-md-6">
+            <div class="plan">
+                <img src="~/Content/picture/testing.jpg" width="100%" height="380px;">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="plan-1">
+                <h3><b>Medical Test</b></h3>
+                <p>
+                    Any patient can there medical test in our medical.For this at first they can excess our test menu.There are several test 
+                    in this menu.There is a dropdownlist they can select there necessary test and aslso see the value or
+                    price of this or these test.Patient also using our WeMedCare see there test result and also print there test result.
+                    There is a pdf download option of test result when they click this option it will be print.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="~/Scripts/aos.js"></script>
+    <script>
+
+        AOS.init();
+    </script>
+</body>
+</html>

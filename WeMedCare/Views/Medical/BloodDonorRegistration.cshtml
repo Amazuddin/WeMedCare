@@ -1,0 +1,72 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+    List<BloodModel> bloods = ViewBag.bloodgroup;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BloodDonorRegistration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Content/donorregistration.css" rel="stylesheet" />
+</head>
+<body>
+<div>
+    <h1> Donor Registration Form </h1>
+    <div class="bg-agile">
+        <div class="book-appointment">
+            <h2>Become a Donor</h2>
+            <form action="#" method="POST">
+                <div class="left-agileits-w3layouts same">
+                    <div class="gaps">
+                        <p>Name</p>
+                        <input type="text" id="donorName" name="donorName" placeholder="" required="" />
+                    </div>
+                    <div class="gaps">
+                        <p>Phone Number</p>
+                        <input type="text" id="number" name="number" placeholder="" required=""/>
+                    </div>
+                    <div class="gaps">
+                        <p>Blood Group</p>
+                        <select class="form-control" id="bloodid" name="bloodid">
+                            <option value="">SELECT</option>
+                            @foreach (BloodModel bl in bloods)
+                            {
+                                <option value="@bl.id">@bl.bloodGroup</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="right-agileinfo same">
+
+                   
+
+                    <div class="gaps">
+                        <p>Gender</p>
+                        <select class="form-control" id="sex" name="sex">
+                            <option></option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="gaps">
+                        <p>Address</p>
+                       
+                        <input type="text" id="address" name="address" placeholder="" required="" />
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+                <input type="submit" value="Submit" id="SaveDonor">
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

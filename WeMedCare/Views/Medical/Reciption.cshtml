@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reciption</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        #school-avail-head {
+            font-size: 48px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+        }
+
+        .school-avail {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .schoolimg-div {
+            height: 450px;
+            background-color: none;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="school-avail">
+        <center>
+            <strong id="school-avail-head">Information</strong>
+        </center>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="schoolimg-div">
+                <img src="~/Content/picture/recipt.jpg" width="100%;" height="100%;">
+            </div>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div class="schoolimg-div">
+                <center>
+                    <h3>Our Courses for Class: 1-8</h3>
+                    <h2>Admission Open on December 20 to january 20</h2>
+                    <h4>Admission Fee:<b> 5000 BDT</b>(Class 1 to 5)</h4>
+                    <h4>Admission Fee:<b> 7000 BDT</b>(Class 6 to 8)</h4>
+                    <h3>Contact With Us: <br><br><b>01620629067</b><br><b>01867622722</b><br><b>elegant@gmail.com</b>
+                    </h3>
+
+                </center>
+            </div>
+        </div>
+
+    </div><br><br/>
+    <center>
+        <div>
+            <a href="@Url.Action("IndexHomepage", "Medical")"><i class="fa fa-arrow-left"></i> Back to home page</a>
+        </div>
+    </center>
+
+
+</div>
+</body>
+</html>

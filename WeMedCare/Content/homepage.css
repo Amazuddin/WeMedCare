@@ -1,0 +1,56 @@
+﻿body {
+}
+.t_hospital {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        #ourhospital {
+            font-size: 55px;
+            font-weight: bold;
+            border-bottom-style: black;
+        }
+
+        .diagnostic-img {
+            width: 100%;
+            height: 320px;
+        }
+
+        .diagnoistic_name {
+            font-size: 16px;
+            margin-top: 5px;
+            padding: 10px;
+            text-align: center;
+            /*height: inherit;*/
+            color: black;
+        }
+
+        .dia-center {
+            height: 440px;
+            margin: 10px;
+            padding: 0px;
+            text-align: center;
+            box-shadow: 1px 1px 0px #888888;
+        }
+
+            .dia-center:hover {
+                box-shadow: -1px 2px 18px #526152;
+            }
+
+
+             .carousel-inner img {
+            width: 100%;
+            height: 550px;
+        }
+
+        #services {
+            font-size: 50px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+            margin-top: 15px;
+        }
+
+        .Sclass {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }

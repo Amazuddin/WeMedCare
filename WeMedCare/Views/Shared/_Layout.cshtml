@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title WeMedCare</title>
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    *@ @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    @*<div style="background-color: #d6dee4;" class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3" style="margin-right: -104px;">
+            <i class=" fa fa-address-book">
+            </i>
+            <b>Emergency: </b>01755001451
+        </div>
+        <div class="col-md-2">
+            <span class="fa fa-envelope"></span>
+            refatkhan93@gmail.com
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-2">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            BGCMed,Chittagong
+        </div>
+    </div>*@
+    <nav style="background-color: #34404c;" class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand myclass" href="#">
+            <i style="font-size: 47px;" class="logo fa fa-user-md"></i>
+            WeMedCare
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="menual collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Appointment</a>
+                <a class="nav-item nav-link" href="#">Profile</a>
+                <a class="nav-item nav-link" href="#">Contact</a>
+                <a class="nav-item nav-link" href="#">Register</a>
+                <a class="nav-item nav-link" href="#">Login</a>
+                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </div>
+
+        </div>
+    </nav>
+    
+        @RenderBody()
+        
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>WeMed<span>Care</span></h3>
+
+            <p class="footer-links">
+                We are dedicate to providing the best possible<br> health care for the people to get better health.
+            </p>
+
+            <p class="footer-company-name">Company Name &copy; 2019</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Commerce collage Street</span> Agrabad, Chittagong</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+01620629067</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">elegant@gmail.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Mohammad Amaz Uddin,Md Sayem hossain,Nahida Yeasmin Bithi,Chandrasree Das Gupta.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

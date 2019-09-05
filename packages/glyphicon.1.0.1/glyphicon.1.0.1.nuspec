@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>glyphicon</id>
+    <version>1.0.1</version>
+    <title>GlyphIcon</title>
+    <authors>Chris Eargle</authors>
+    <owners>Chris Eargle</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>http://kodefuguru.com/glyphicon</projectUrl>
+    <iconUrl>http://kodefuguru.com/glyphicon/logo</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Razor helpers for Bootstrap 3 icons</description>
+    <summary />
+    <copyright>Copyright 2014</copyright>
+    <language>en-US</language>
+    <tags>razor bootstrap icons</tags>
+  </metadata>
+</package>
