@@ -2,7 +2,7 @@
 
 @{
     //Layout = null;
-    List<BloodModel> bloods = ViewBag.bloodgroup;
+    List<BloodModel> bloods = ViewBag.Category;
 }
 
 <!DOCTYPE html>
@@ -25,19 +25,19 @@
                 <div class="left-agileits-w3layouts same">
                     <div class="gaps">
                         <p>Name</p>
-                        <input type="text" id="donorName" name="donorName" placeholder="" required="" />
+                        <input type="text" id="donorName" name="DonorName" placeholder="" required="" />
                     </div>
                     <div class="gaps">
                         <p>Phone Number</p>
-                        <input type="text" id="number" name="number" placeholder="" required=""/>
+                        <input type="text" id="number" name="Number" placeholder="" required="" />
                     </div>
                     <div class="gaps">
                         <p>Blood Group</p>
-                        <select class="form-control" id="bloodid" name="bloodid">
+                        <select class="form-control" id="bloodid" name="Bloodid">
                             <option value="">SELECT</option>
                             @foreach (BloodModel bl in bloods)
                             {
-                                <option value="@bl.id">@bl.bloodGroup</option>
+                                <option value="@bl.Id">@bl.BloodGroup</option>
                             }
                         </select>
                     </div>
@@ -48,7 +48,7 @@
 
                     <div class="gaps">
                         <p>Gender</p>
-                        <select class="form-control" id="sex" name="sex">
+                        <select class="form-control" id="sex" name="Sex">
                             <option></option>
                             <option>Male</option>
                             <option>Female</option>
@@ -57,7 +57,7 @@
                     <div class="gaps">
                         <p>Address</p>
                        
-                        <input type="text" id="address" name="address" placeholder="" required="" />
+                        <input type="text" id="address" name="Address" placeholder="" required="" />
                     </div>
 
                 </div>

@@ -1,0 +1,194 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+    List<SpecialistModel> specialist = ViewBag.Category;
+}
+    <meta name="viewport" content="width=device-width" />
+<title>DoctorAppointment</title>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+<style>
+    .tdname {
+        font-size: 20px;
+        padding-right: 14px;
+    }
+
+    .tdvalue {
+        width: 237px;
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        height: 40px;
+        margin-top: 10px;
+    }
+    #tddate {
+        width: 237px;
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        height: 40px;
+        margin-top: 10px;
+    } 
+    .bye {
+        margin-top: 30px;
+    }
+    .up {
+        margin-top: 50px;
+    }
+    .but {
+        float: right;
+        width: 130px;
+        margin-top: 18px;
+        background-color: #3ea5c1;
+        border-color: #3ea5c1;
+    }
+</style>
+<body>
+<div >
+    <center><h1 style="margin-top: 50px; color: #3ea5c1;">Appointment List</h1></center>  
+    <form action="" method="POST">
+        <center>
+            <table class="up">
+                <tr>
+                    <td class="tdname">Specialist:</td>
+                    <td>
+                        <select id="SpecialistId" class="form-control tdvalue" name="Specialist" required="">
+                            <option>Select</option>
+                            @foreach (SpecialistModel sp in specialist)
+                            {
+                                <option value="@sp.Id">@sp.Specialist</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdname">Doctor:</td>
+                    <td>
+                        <select id="id" class="form-control tdvalue" name="DoctorName" required="">
+                            <option>Select</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdname">Date:</td>
+                    <td>
+                        <input type="text" class="form-control" id="tddate" placeholder="Date" required="" autocomplete="off"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn btn-info but" id="searchbtn"  style="">Search</button></td>
+                </tr>
+            </table>
+        </center>
+
+    </form>
+    <div class="row bye">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 design">
+            <table class="table table-bordered table-striped table-hover" id="patienttable">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Mobile Number</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+</body>
+
+@section scripts
+{
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#tddate').datepicker({
+                //startDate: date,
+                //weekStart: 6,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+
+            var table = $('#patienttable').DataTable();
+
+            $('#searchbtn').on('click', function () {
+               
+
+                table.clear();
+               
+                var id = $('#id').val();
+                var date = $('#tddate').val();
+                var json = { id: id, date: date };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllPatientByDoctorId", "Medical")',
+                    contentType: 'application/json',
+                    data: JSON.stringify(json),
+                    success: function (response) {
+
+                        $.each(response, function (key, value) {
+                            table.row.add([
+                               
+                                value.PatientName,
+                                value.Number,
+                                value.Email,
+                                value.Sex
+                               
+                            ]).draw(false);
+                            
+                        });
+                        
+                    }
+
+                });
+                return false;
+            });
+
+
+
+
+        });
+    </script>
+
+    <script type="text/javascript">
+            $(function () {
+                $('#SpecialistId').on('change', function() {
+
+                    var Id = $('#SpecialistId').val();
+                   
+                    $('#id').empty();
+                    
+                    $('#id').append('<option value="">SELECT</option>');
+                    var json = { id: Id };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetAllDoctorNameById", "Medical")',
+                        contentType: 'application/json',
+                        data: JSON.stringify(json),
+                        success: function(response) {
+                            $.each(response, function(key, value) {
+                                $('#id').append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                            });
+                        }
+                    });
+
+                });
+            });
+
+</script>
+}

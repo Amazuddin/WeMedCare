@@ -15,8 +15,8 @@ namespace WeMedCare
 
             routes.MapRoute(
                 name: "Default",
-                url: "{action}/{id}",
-                defaults: new { controller = "Medical", action = "IndexHomepage", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Medical", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

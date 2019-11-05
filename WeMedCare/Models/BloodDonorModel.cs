@@ -8,11 +8,11 @@ namespace WeMedCare.Models
 {
     public class BloodDonorModel
     {
-        public int id { get; set; }
-        public string donorName { get; set; }
-        public int number { get; set; }
-        public int bloodid { get; set; }
-        public string sex { get; set; }
-        public string address { get; set; }
+        public int Id { get; set; }
+        public string DonorName { get; set; }
+        public string Number { get; set; }
+        public int Bloodid { get; set; }
+        public string Sex { get; set; }
+        public string Address { get; set; }
     }
-}
+} 

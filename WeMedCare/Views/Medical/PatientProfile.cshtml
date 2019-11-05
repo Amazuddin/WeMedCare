@@ -1,0 +1,93 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+     Register pat = ViewBag.Patient;
+}
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>PatientProfile</title>
+<style>
+    .formdesign {
+        margin-top: 40px;
+    }
+    .t_pro {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    #ourpro {
+        font-size: 48px;
+        /*border-bottom-style: ridge;*/
+        font-weight: bold;
+        /*border-bottom-style: black;*/
+        color: cadetblue;
+    }
+
+        /*#ourpro:hover {
+            color: cornflowerblue;
+        }*/
+    .btdesign {
+        float: right;
+        width: 175px;
+    }
+    .ptform {
+        margin-left: 200px;
+        margin-top: 80px;
+        margin-right: 200px;
+        padding: 62px 118px;
+        background-color: #f5f9fd;
+        border: 0px;
+        border-style: outset;
+        box-shadow: 0px 0px 20px #d8d4d4;
+        /*border-radius: 0 0 20px 20px;*/
+    }
+</style>
+<body>
+    <div class="ptform">
+        <div class="container">
+            <div class="t_pro">
+                <center>
+
+                    <i class="far fa-user-circle" id="ourpro"><strong>Profile</strong></i>
+                </center>
+            </div>
+            <div class="formdesign">
+                <form id="Updateprofile" method="POST" action="PatientProfileUpdate">
+                    <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" value="@pat.Name" disabled="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAge" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputAge" placeholder="Age" value="@pat.Age" disabled="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Address" value="@pat.Address" disabled="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMobile" class="col-sm-2 col-form-label">Mobile</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputMobile" placeholder="Mobile" value="@pat.PhoneNo" disabled="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <a href="@Url.Action("PatientProfileUpdate", "Medical")"><button type="submit" class="btn btn-primary btdesign">Update Profile</button></a>
+                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>

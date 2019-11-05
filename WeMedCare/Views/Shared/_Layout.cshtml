@@ -4,40 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title WeMedCare</title>
-    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
     
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href="~/Content/custom.css" rel="stylesheet" />
+
+   
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    *@ @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
 
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
 </head>
 <body>
-    @*<div style="background-color: #d6dee4;" class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-3" style="margin-right: -104px;">
-            <i class=" fa fa-address-book">
-            </i>
-            <b>Emergency: </b>01755001451
-        </div>
-        <div class="col-md-2">
-            <span class="fa fa-envelope"></span>
-            refatkhan93@gmail.com
-        </div>
-        <div class="col-md-4"></div>
 
-        <div class="col-md-2">
-            <span class="fa fa-user" aria-hidden="true"></span>
-            BGCMed,Chittagong
-        </div>
-    </div>*@
     <nav style="background-color: #34404c;" class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand myclass" href="#">
             <i style="font-size: 47px;" class="logo fa fa-user-md"></i>
@@ -47,21 +26,68 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="menual collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Appointment</a>
-                <a class="nav-item nav-link" href="#">Profile</a>
-                <a class="nav-item nav-link" href="#">Contact</a>
-                <a class="nav-item nav-link" href="#">Register</a>
-                <a class="nav-item nav-link" href="#">Login</a>
-                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </div>
+            
+            @if (Session["PatientId"] == null && Session["DoctorId"] == null && Session["ReceptionistId"] == null && Session["AdminId"] == null)
+            {
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link  @ViewBag.Doctor" href="@Url.Action("DoctorInfo", "medical")">Doctor</a>
+                    <a class="nav-item nav-link @ViewBag.Tutorial" href="@Url.Action("Tutorial", "medical")">Tutorial</a>
+                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption", "medical")">Information</a>
+                    <a class="nav-item nav-link  @ViewBag.Login" href="@Url.Action("LogIn", "Security")">Login</a>
+                    <a class="nav-item nav-link  @ViewBag.Registration" href="@Url.Action("Registration", "Security")">Register</a>
+                </div>
+            }
+            @if (Session["PatientId"] != null)
+            {
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link  @ViewBag.Appointment" href="@Url.Action("Appointment","Medical")">Appointment</a>
+                    <a class="nav-item nav-link @ViewBag.Tutorial" href="@Url.Action("Tutorial","Medical")">Tutorial</a>
+                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Information","Medical")">Information</a>
+                    <a class="nav-item nav-link  @ViewBag.PatientProfile" href="@Url.Action("PatientProfile", "Medical")">Profile</a>
+                    <a class="nav-item nav-link " href="@Url.Action("PatientLogout", "Security")">Logout</a>
+                </div>
+            }
+            @if (Session["DoctorId"] != null)
+            {
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link @ViewBag.Tutorial" href="@Url.Action("Prescription","Medical")">Prescription</a>
+                    <a class="nav-item nav-link  @ViewBag.DoctorProfile" href="@Url.Action("DoctorProfile","Medical")">Profile</a>
+                    <a class="nav-item nav-link " href="@Url.Action("DoctorLogout", "Security")">Logout</a>
+
+                </div>
+            }
+            @if (Session["ReceptionistId"] != null)
+            {
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
+                   
+                    <a class="nav-item nav-link @ViewBag.DoctorAppointment" href="@Url.Action("DoctorAppointment","Medical")">Appointment</a>
+                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption", "Medical")">Information</a>
+                    <a class="nav-item nav-link  @ViewBag.ReciptionistProfile" href="@Url.Action("ReceptionistProfile","Medical")">Profile</a>
+                    <a class="nav-item nav-link " href="@Url.Action("ReceptionistLogout", "Security")">Logout</a>
+
+                </div>
+            }
+            @if (Session["AdminId"] != null)
+            {
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link @ViewBag.Save" href="@Url.Action("Create","DoctorAdmin")">SaveDoctor</a>
+                    <a class="nav-item nav-link @ViewBag.DoctorAppointment" href="@Url.Action("Delete","DoctorAdmin")">Appointment</a>
+                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption","Medical")">Information</a>
+                    <a class="nav-item nav-link " href="@Url.Action("AdminLogout", "Security")">Logout</a>
+
+                </div>
+            }
 
         </div>
     </nav>
-    
-        @RenderBody()
-        
+
+    @RenderBody()
+
     <footer class="footer-distributed">
 
         <div class="footer-left">
@@ -72,7 +98,7 @@
                 We are dedicate to providing the best possible<br> health care for the people to get better health.
             </p>
 
-            <p class="footer-company-name">Company Name &copy; 2019</p>
+            <p class="footer-company-name">2019</p>
         </div>
 
         <div class="footer-center">
@@ -89,7 +115,7 @@
 
             <div>
                 <i class="fa fa-envelope"></i>
-                <p><a href="mailto:support@company.com">elegant@gmail.com</a></p>
+                <p><a href="#">elegant@gmail.com</a></p>
             </div>
 
         </div>
@@ -103,10 +129,10 @@
 
             <div class="footer-icons">
 
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
 
             </div>
 
@@ -114,10 +140,13 @@
 
     </footer>
 
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
 </body>
 </html>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+
+    
+
+

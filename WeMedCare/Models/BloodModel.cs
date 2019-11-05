@@ -7,7 +7,7 @@ namespace WeMedCare.Models
 {
     public class BloodModel
     {
-        public int id { get; set; }
-        public string bloodGroup { get; set; }
+        public int Id { get; set; }
+        public string BloodGroup { get; set; }
     }
 }

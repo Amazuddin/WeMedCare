@@ -1,0 +1,331 @@
+﻿@using System.Web.Services.Description
+@using WeMedCare.Models
+@model List<Services>
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+
+    <link href="~/Content/homepage.css" rel="stylesheet" />
+    <link href="~/Content/aos.css" rel="stylesheet" />
+
+    <style>
+        #apartment-avail-head {
+            font-size: 48px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+        }
+
+        .apartment-avail {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .school-authority-img {
+            height: 300px;
+            width: 100%;
+        }
+
+        .team {
+            height: 430px;
+            margin: 10px;
+            padding: 0px;
+            text-align: center;
+            box-shadow: 1px 1px 0px #888888;
+        }
+
+        .team-authority {
+            height: 430px;
+            margin: 10px;
+            padding: 0px;
+            text-align: center;
+            box-shadow: 1px 1px 0px #888888;
+            box-shadow: -1px 2px 18px black;
+        }
+
+            .team-authority:hover {
+                box-shadow: -1px 2px 18px black;
+            }
+
+        .school-autho_info {
+            font-size: 16px;
+            margin-top: 5px;
+            padding: 10px;
+            text-align: center;
+            height: 200px;
+        }
+
+        .comment {
+            height: 100%;
+            background-color: #bbc4c3;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+ $('.carousel').carousel({
+     interval: 500
+ }) </script>
+
+</head>
+<body>
+    @*<div class="img_hospital">
+            <img src="~/Content/picture/imag.jpeg" height="600px;" width="100%;">
+        </div>*@
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+            <li data-target="#demo" data-slide-to="4"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Content/picture/home.jpg" alt="Los Angeles" width="100%" height="300">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/picture/home2.jpg" alt="Chicago" width="100%" height="300">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/picture/slider2.jpg" alt="New York" width="100%" height="300">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/picture/slider.jpg" alt="New York" width="100%" height="300">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/picture/slider3.jpg" alt="New York" width="100%" height="300">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+
+
+
+    <div class="container">
+        <div class="Sclass">
+            <center>
+                <div class="animated slideInLeft">
+                    <strong id="services" class="animated shake">Services</strong>
+                </div>
+
+            </center>
+            @*<center>
+                <p style="font-size:20px;">
+                    medical center Managed care A health care organization defined by Structure–a physical plant–eg, a hospital and buildings in which health care, research, staff support, and ancillary services are provided and Function–medical services that may be more complex than that provided by a traditional community hospital.
+                </p>
+            </center>*@
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" data-aos="zoom-out-up">
+            @{
+                foreach (Services service in Model)
+                {
+
+                    <div class="col-md-4">
+                        <a style="text-decoration: none;" href="/Medical/@service.Link">
+                            <div class="dia-center">
+                                <img src="~/Content/@service.Image" class="diagnostic-img">
+                                <div class="diagnoistic_name">
+                                    <h2>@service.Name</h2>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+            }
+
+
+            @*<div class="col-md-4">
+                <a style="text-decoration: none;" href="@Url.Action("Appointment", "Medical")">
+                    <div class="dia-center">
+
+                        <img src="~/Content/picture/app.jpg" class="diagnostic-img">
+                        <div class="diagnoistic_name">
+                            <h2>
+                                Doctors Appointment
+                            </h2>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+
+
+
+            <div class="col-md-4">
+                <a style="text-decoration: none;" href="@Url.Action("specialist", "Medical")">
+                    <div class="dia-center">
+
+                        <img src="~/Content/picture/doctor.jpg" class="diagnostic-img">
+                        <div class="diagnoistic_name">
+                            <h2>
+                                Find Doctor
+                            </h2>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a style="text-decoration: none;" href="@Url.Action("Tutorial", "Medical")">
+                    <div class="dia-center">
+
+                        <img src="~/Content/picture/tutorial.jpg" class="diagnostic-img">
+                        <div class="diagnoistic_name">
+                            <h2>
+                                Patient & Visitor Guide
+                            </h2>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>*@
+        </div>
+
+        @*<div class="row" data-aos="zoom-in">
+            <div class="col-md-4">
+                <a style="text-decoration: none;" href="@Url.Action("Blood", "Medical")">
+                    <div class="dia-center">
+
+                        <img src="~/Content/picture/blood.png" class="diagnostic-img">
+                        <div class="diagnoistic_name">
+                            <h2>Blood</h2>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a style="text-decoration: none;" href="">
+                    <div class="dia-center">
+
+                        <img src="~/Content/picture/test.jpg" class="diagnostic-img">
+                        <div class="diagnoistic_name">
+                            <h2>Medical Test</h2>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a style="text-decoration: none;" href="@Url.Action("Reciption", "Medical")">
+                    <div class="dia-center">
+
+                        <img src="~/Content/picture/reciption.jpg" class="diagnostic-img">
+                        <div class="diagnoistic_name">
+                            <h2>Reception</h2>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>*@
+
+
+    </div>
+
+
+    <div class="container">
+        <div class="apartment-avail">
+            <center>
+                <strong id="apartment-avail-head">Authority</strong>
+            </center>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="team">
+                    <img class="school-authority-img" src="~/Content/picture/autho.jpg">
+                    <div class="school-autho_info">
+                        <h3>Dr. Rafiqul Islam</h3>
+                        <strong>Manager of the Medical</strong>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="team-authority">
+                    <div class="comment">
+                        <h2>Comments:</h2>
+                        <p style="padding: 3px;"><b style="font-size: 16px;">Dr. Rafiqul Islam:</b> BTMEDI improves access to healthcare for
+                            people everywhere. It is an easy to use platform and service that helps patients to get medical second opinions and
+                            to schedule affordable, high quality medical treatment in South Korea. With more than 1,000 trusted hospitals and clinics,
+                         thousands of expert doctors, and an experienced patient Care Team.</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="team">
+                    <img class="school-authority-img" src="~/Content/picture/autho2.jpg">
+                    <div class="school-autho_info">
+                        <h3>
+                            Dr. Ajij Ahmed
+                        </h3>
+                        <strong>Owner & Derector of the Medical</strong>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="team-authority">
+
+                    <div class="comment">
+                        <h2>Comments:</h2>
+                        <p style="padding: 3px;"><b style="font-size: 16px;">Dr. Ajij Ahmed:</b> BTMEDI improves access to healthcare for
+                            people everywhere. It is an easy to use platform and service that helps patients to get medical second opinions and
+                            to schedule affordable, high quality medical treatment in South Korea. With more than 1,000 trusted hospitals and clinics,
+                         thousands of expert doctors, and an experienced patient Care Team.</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="~/Scripts/aos.js"></script>
+    <script>
+
+        AOS.init();
+    </script>
+
+</body>
+</html>

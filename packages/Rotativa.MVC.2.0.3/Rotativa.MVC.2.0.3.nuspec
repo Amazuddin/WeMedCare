@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rotativa.MVC</id>
+    <version>2.0.3</version>
+    <title>Rotativa.MVC</title>
+    <authors>Dmitry Pronin</authors>
+    <owners>Dmitry Pronin</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/llCorvinSll/Rotativa</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extremely easy way to print Pdf in Aspnet Mvc
+
+      fork of original
+      https://www.nuget.org/packages/Rotativa/
+      or
+      https://github.com/webgio/Rotativa</description>
+    <summary />
+    <releaseNotes>dependency for backward compatibility.
+      Change AssemblyInfo</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>PDF AspNet Mvc</tags>
+    <dependencies>
+      <dependency id="Rotativa.Core" version="2.0.0" />
+    </dependencies>
+  </metadata>
+</package>

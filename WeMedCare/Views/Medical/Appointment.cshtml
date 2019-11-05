@@ -2,7 +2,7 @@
 
 @{
     //Layout = null;
-    List<SpecialistModel> specialist = ViewBag.specialistlist;
+    List<SpecialistModel> specialist = ViewBag.Category;
 }
 
 <!DOCTYPE html>
@@ -13,33 +13,53 @@
     <title>Appointment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="~/Content/appointment.css" rel="stylesheet" />
+    <link href="~/Content/appointment.css" rel="stylesheet"/>
+    <style>
+        .warning {
+            background-color: powderblue;
+            color: black;
+            font-weight: 400;
+            padding: 10px;
+            width: 28em;
+            text-align: center;
+            margin-bottom: 37px;
+        }
+    </style>
 </head>
 <body>
 <div >
-    <h1> Medical Appointment Form </h1>
+    <h1> Doctor Appointment Form </h1>
     <div class="bg-agile">
         <div class="book-appointment">
             <h2>Make an appointment</h2>
+            <center>
+                @if (ViewBag.Error != null)
+                     {
+                         <div class="warning" id="warningLabel">
+                             <label>Appointment is Successfully taken.</label>
+                         </div>
+                     }
+            </center>
+            
             <form action="#" method="POST">
                 <div class="left-agileits-w3layouts same">
                     <div class="gaps">
                         <p>Patient Name</p>
-                        <input type="text" id="patientName" name="patientName" placeholder="" required="" />
+                        <input type="text" id="patientName" name="PatientName" placeholder="" required="" />
                     </div>
                     <div class="gaps">
                         <p>Phone Number</p>
-                        <input type="text" id="number" name="number" placeholder="" required="" />
+                        <input type="text" id="number" name="Number" placeholder="" required="" />
                     </div>
                     <div class="gaps">
                         <p>Email</p>
-                        <input type="email" id="email" name="email" placeholder="" required=""/>
+                        <input type="email" id="email" name="Email" placeholder="" required=""/>
                     </div>
                     <div class="gaps">
                         <p>Select Date</p>
-                        <input id="datepicker1" name="date" type="text" value=""
-                               onfocus="this.value = '';" onblur="    if (this.value == '')
-                                { this.value = 'yyyy/mm/dd'; }" required="">
+                        <input id="datepicker1" name="Date" type="text" autocomplete="off" readonly="readonly" value=""
+                               onfocus="this.value = '';" onblur=" if (this.value === '')
+    { this.value = 'dd/mm/yyyy'; }" required="">
                     </div>
                 </div>
                 <div class="right-agileinfo same">
@@ -50,21 +70,21 @@
                             <option value="">SELECT</option>
                             @foreach (SpecialistModel sp in specialist)
                             {
-                                <option value="@sp.SpecialistId">@sp.Specialist</option>
+                                <option value="@sp.Id">@sp.Specialist</option>
                             }
                         </select>
                     </div>
                     <div class="gaps">
                         <p>Doctor Name</p>
-                        <select class="form-control" id="id" name="id">
+                        <select class="form-control" id="id" name="DoctorId">
                             <option value="">SELECT</option>
                         </select>
                     </div>
                     <div class="gaps">
                         <p>Gender</p>
-                        <select class="form-control" id="sex" name="sex">
+                        <select class="form-control" id="sex" name="Sex">
                             <option></option>
-                            <option>Male</option>
+                            <option >Male</option>
                             <option>Female</option>
                         </select>
                     </div>
@@ -76,11 +96,6 @@
         </div>
     </div>
 </div>
-
-   
-
-
-
     @section scripts
     {
 
@@ -95,7 +110,11 @@
             });
         </script>
         <script type="text/javascript">
-            $(function() {
+            $(function () {
+                setTimeout(function () {
+                    $("#warningLabel").hide(1000).empty();
+                }, 5000);
+
                 $('#SpecialistId').on('change', function() {
 
                     var deptId = $('#SpecialistId').val();
@@ -110,7 +129,7 @@
                         data: JSON.stringify(json),
                         success: function(response) {
                             $.each(response, function(key, value) {
-                                $('#id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                                $('#id').append('<option value="' + value.Id + '">' + value.Name + '</option>');
                             });
                         }
                     });

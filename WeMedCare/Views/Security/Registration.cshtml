@@ -1,0 +1,176 @@
+﻿@{
+    //Layout = null;
+}
+
+
+<link href="~/Content/Registration.css" rel="stylesheet" />
+<style>
+    .warning {
+        background-color: grey;
+        color: white;
+        font-weight: 400;
+        padding: 10px;
+        width: 28em;
+        text-align: center;
+        margin-bottom: 37px;
+    }
+</style>
+
+<div class="reg">
+    <div class="container">
+
+
+        <div class=" w3l-login-form kk">
+            <center>
+                @if (ViewBag.Error != null)
+                {
+                    <div class="warning" id="warningLabel">
+                        <label>@ViewBag.Error</label>
+                    </div>
+                }
+                else if (ViewBag.Yes == '1')
+                {
+                    <div class="warning" id="warningLabel">
+                        <label>Register Successful, Please Login</label>
+                    </div>
+                }
+            </center>
+
+            <h2>Registration Here</h2>
+            <form action="@Url.Action("Registration","Security")" method="POST" id="registerPatient">
+
+                <div class=" w3l-form-group">
+                    <label>Name:</label>
+                    <div class="group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-control" placeholder="Username" id="Name" name="Name" required="required" />
+                    </div>
+                </div>
+
+                <div class=" w3l-form-group">
+                    <label>Age:</label>
+                    <div class="group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-control" placeholder="Age" id="Age" name="Age" required="required" />
+                    </div>
+                </div>
+                <div class=" w3l-form-group">
+                    <label>Address:</label>
+                    <div class="group">
+                        <i class="fas fa-address-book"></i>
+
+                        <input type="text" class="form-control" placeholder="Address" id="Address" name="Address" required="required" />
+                    </div>
+                </div>
+                <div class=" w3l-form-group">
+                    <label>Phone Number:</label>
+                    <div class="group">
+                        <i class="fas fa-phone"></i>
+                        <input type="text" class="form-control" placeholder="PhoneNo" id="PhoneNo" name="PhoneNo" required="required" />
+                    </div>
+                </div>
+                <div class=" w3l-form-group">
+                    <label>Email:</label>
+                    <div class="group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" class="form-control" placeholder="Email " id="Email" name="Email" required="required" />
+                    </div>
+                </div>
+
+                <div class=" w3l-form-group">
+                    <label>Password:</label>
+                    <div class="group">
+                        <i class="fas fa-unlock"></i>
+                        <input type="password" class="form-control" placeholder="Password " id="Password" name="Password" required="required" />
+                    </div>
+                </div>
+                <div class=" w3l-form-group">
+                    <label>Confirm Password:</label>
+                    <div class="group">
+                        <i class="fas fa-unlock"></i>
+                        <input type="password" class="form-control" placeholder="Confirm Password " id="ConfirmPassword" name="ConfirmPassword" required="required" />
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p class=" w3l-register-p">
+                Don't have an account?<a href="#" class="register"> Login</a>
+            </p>
+        </div>
+
+
+
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#warningLabel").hide(1000).empty();
+            }, 5000);
+
+
+            $("#registerPatient").validate({
+                rules: {
+                    Name: "required",
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    ConfirmPassword: {
+                        minlength: 6,
+                        equalTo: "#Password"
+                    },
+                    PhoneNo: {
+                        required: true,
+                        number: true
+                    },
+                    Age: {
+                        required: true,
+                        number: true
+                    },
+                    Address: "required"
+
+
+                },
+                messages: {
+                    Name: "Please Enter Your Name",
+                    Age: {
+                        required: "Please Enter your age",
+                        number: "Age should be number"
+                    },
+                    PhoneNo: {
+                        required: "Please Enter Your Phone Number",
+                        number: "Number must avoid cahracter"
+                    },
+                    Email: {
+                        required: "Please Enter Your Email",
+                        email: "Email not correct"
+                    },
+                    Password: {
+                        required: "Please Enter Your Password",
+                        minlength: "Minimum length is 6"
+                    },
+                    ConfirmPassword: {
+                        minlength: "Minimum length is 6",
+                        equalTo: "Password not matched"
+                    },
+
+
+                    Address: "Please Enter your Address"
+
+                }
+            });
+        });
+
+    </script>
+}
+

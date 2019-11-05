@@ -1,0 +1,143 @@
+﻿@using WeMedCare.Models
+@using System.Security.AccessControl
+@model WeMedCare.Models.Prescription
+@{
+    Layout = null;
+    DoctorView doc = ViewBag.Doctor;
+    Prescription pp = Model;
+}
+
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>MakePdf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .hh {
+            font-size: 40px;
+            font-style: italic;
+            color: #581845;
+        }
+        .kk {
+            align-items: center;
+            
+        }
+       .kl {
+           float:right;
+       }
+
+       
+        .cltd {
+            color: #29345D;
+            font-size: 28px;
+        }
+       
+        .llkl {
+            margin-top: 5px;
+        }
+        .bdro {
+            border-right: 6px solid #1F3752;
+            }
+        .pod {
+            padding: 10px;
+            min-height: 40em;
+            width: 20em;
+            font-size: 30px;
+        }
+        .pres {
+            text-align: center;
+             min-width: 27em;
+            font-size: 30px;
+            color: white
+        }
+        .clv {
+            font-size: 25px;
+            
+        }
+        .bdr1 {
+            font-size: 30px;
+            color: white;
+            text-align: center;
+        }
+        
+    </style>
+
+
+
+
+
+    <div style="border-bottom: 12px solid #A3B518; " class="kk">
+
+        <p class="hh">
+            <i class="fa fa-user-md" style="font-size: 80px;"></i><b>WeMedCare</b>
+        </p>
+        <h3 style="font-size: 28px;">Agrabad,Chittagong</h3>
+        <h3 style="font-size: 28px;">01620629067</h3>
+       
+
+            <table style="margin-left: 900px; margin-top: -130px; margin-bottom: 20px;">
+                <tr>
+                    <td class="cltd"><b>Doctor Name :</b> </td>
+                    <td class="clv">@doc.DocName</td>
+                </tr>
+                <tr>
+                    <td class="cltd"><b>Specialist :</b> </td>
+                    <td class="clv">@doc.DocSpecialist</td>
+                </tr>
+                <tr>
+                    <td class="cltd"><b>Qualification :</b> </td>
+                    <td class="clv">@doc.DocDegree</td>
+                </tr>
+                <tr>
+                    <td class="cltd"><b>Date :</b> </td>
+                    <td class="clv">@DateTime.Now.ToString("dd/MM/yyyy")</td>
+                </tr>
+            </table>
+        </div>
+    
+  <table style="margin-top: 20px;">
+    <tbody>
+        <tr>
+            <td style="font-size: 28px;">Patient's Name :</td>
+            <td style="font-size: 28px; padding-left: 5px;"> @Model.PatientName</td>
+            <td style="padding-left: 350px; font-size: 28px;">Weight :</td>
+            <td style="font-size: 28px; padding-left: 5px;"> @Model.PatientWeight</td>
+            <td style="padding-left: 230px; font-size: 28px;">Age :</td>
+            <td style="font-size: 28px; padding-left: 5px;"> @Model.PatientAge</td>
+        </tr>
+    </tbody>
+
+</table>
+<div class="row">
+    <div class="col-md-6">
+        <table style="margin-top: 30px;">
+            <tr style="background-color: #1F3752;">
+                <td class="bdr1">Tests</td>
+                <td class="pres">Medicine</td>
+            </tr>
+            <tr>
+                <td class="bdro">
+                    <div class="pod">@Model.PrescriptTest</div>
+
+                </td>
+                <td>
+                    <div class="pod">
+                        @Model.PrescriptMedicine
+                    </div>
+                </td>
+            </tr>
+        </table> 
+    </div>
+  
+</div>
+
+       
+    
+
+
+
+   
+

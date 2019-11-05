@@ -7,13 +7,15 @@ namespace WeMedCare.Models
 {
     public class PatientAppointmentModel
     {
-        public int formId { get; set; }
-        public string patientName { get; set; }
-        public int number { get; set; }
-        public string email { get; set; }
-        public string date { get; set; }
-        public string specialistId { get; set; }
-        public int id { get; set; }
-        public string sex { get; set; }
+        public int Id { get; set; }
+        public int PatientId { get; set; }
+        public string PatientName { get; set; }
+        public int Number { get; set; }
+        public string Email { get; set; }
+        public string Date { get; set; }
+        public string SpecialistId { get; set; }
+        public int DoctorId { get; set; }
+        public string Sex { get; set; }
+        public string Prescription { get; set; }
     }
 }

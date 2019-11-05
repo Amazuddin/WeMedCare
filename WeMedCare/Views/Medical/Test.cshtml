@@ -1,0 +1,253 @@
+﻿
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+    <style>
+        .t_med {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        #ourmed {
+            font-size: 48px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+            color: #3ea5c1;
+        }
+
+        #ourmed:hover {
+            color: black;
+        }
+
+
+
+        .testdiv {
+            height: 380px;
+            margin: 10px;
+            padding: 0px;
+            text-align: center;
+            box-shadow: -1px 2px 18px #526152;
+        }
+
+        .test-image {
+            width: 100%;
+            height: 245px;
+        }
+
+        .testdiv:hover {
+            box-shadow: 0px 1px 1px #888888;
+        }
+
+        .me-test {
+            height: 102px;
+            margin-bottom: 5px;
+        }
+
+        .h3testdesign {
+            font-size: 18px;
+            color: #d60404;
+            margin-top: 16px;
+        }
+
+        .testnamegive {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .buttonapply {
+            font-size: 13px;
+            color: #fff;
+            background: #20809a;
+            text-decoration: none;
+            position: relative;
+            border: none;
+            border-radius: 0;
+            width: 45%;
+            text-transform: uppercase;
+            padding: 13px;
+            outline: none;
+            letter-spacing: 1px;
+            font-weight: 600;
+            height: 43px;
+        }
+
+            .buttonapply:hover {
+                background-color: #333;
+            }
+
+       
+        .tryyorself {
+            box-shadow: 0px 0px 15px 0px #BDBDBD;
+            padding: 30px 20px;
+            margin-bottom: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="t_med">
+        <center>
+            <strong id="ourmed">Medical Test</strong>
+        </center>
+    </div><br>
+
+
+    <div class="tryyorself">
+       
+        <div class="row">
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/bloodtest.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>Blood Test</b></h3>
+                        <h3 class="h3testdesign"> 300 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "Blood Test" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/ultra.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>Ultrasonography</b></h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "Ultrasonography" })"><input class="buttonapply" data-toggle="popover" type="submit" name="submit" 
+                                                                            value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/xray.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>X-ray</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "X-ray" })"><input class="buttonapply" data-toggle="popover" type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/urine.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>Urine Test</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "Urine Test" })"><input class="buttonapply" data-toggle="popover" type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/tomo.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>Computed tomography</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "Computed tomography" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/kidney.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>Kidney Function Test</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "Kidney Function Test" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/ecg.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>ECG</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 400 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "ECG" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/esr.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>ESR Test</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "ESR Test" })"><input class="buttonapply" data-toggle="popover" type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/angiography.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>angiography</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "angiography" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/mri.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>MRI</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "MRI" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/bio.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>Biopsy</b>
+                        </h3>
+                        <h3 class="h3testdesign"> 600 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "Biopsy" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testdiv">
+                    <img class="test-image" src="~/Content/picture/Dna.jpg">
+                    <div class="me-test">
+                        <h3 class="testnamegive"><b>DNA Test</b></h3>
+                        <h3 class="h3testdesign"> 500 BDT</h3>
+                        <a href="@Url.Action("TestForm", "Medical", new { data = "DNA Test" })"><input class="buttonapply" data-toggle="popover"  type="submit" name="submit" value="Apply"></a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><br><br>
+</div>
+</body>
+</html>

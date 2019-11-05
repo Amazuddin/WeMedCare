@@ -1,0 +1,98 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+    Register pat = ViewBag.Patient;
+}
+
+
+<meta name="viewport" content="width=device-width" />
+<title>PatientUpdateProfile</title>
+<style>
+    .formdesign {
+        margin-top: 40px;
+    }
+
+    .t_pro {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    #ourpro {
+        font-size: 48px;
+        /*border-bottom-style: ridge;*/
+        font-weight: bold;
+        /*border-bottom-style: black;*/
+        color: cadetblue;
+    }
+
+    /*#ourpro:hover {
+            color: cornflowerblue;
+        }*/
+    .btdesign {
+        float: right;
+        width: 175px;
+    }
+
+    .dform {
+        margin-left: 200px;
+        margin-top: 80px;
+        margin-right: 200px;
+        padding: 62px 118px;
+        background-color: #f5f9fd;
+        border: 0px;
+        border-style: outset;     
+    }
+</style>
+<body>
+    
+        <div class="container">
+            <div class="t_pro">
+                <center>
+
+                    <i class="far fa-user-circle" id="ourpro"><strong>Profile</strong></i>
+                </center>
+            </div>
+            <div class="formdesign">
+                <form id="Updateprofile" method="POST" action="Update">
+                    <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="Name" value="@pat.Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAge" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputAge" placeholder="Age" name="Age" value="@pat.Age">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Address"name="Address" value="@pat.Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMobile" class="col-sm-2 col-form-label">Mobile</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputMobile" placeholder="Mobile" name="PhoneNo" value="@pat.PhoneNo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMobile" class="col-sm-2 col-form-label">User Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail" name="Email" placeholder="User Email" required="" >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+
+                            <button type="submit" class="btn btn-primary btdesign">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+</body>

@@ -30,8 +30,23 @@
             margin: 15px;
             padding: 0px;
         }
+        .j {
+            height: 520px;
+            width: 100%;
+        }
+        .bloodinfo {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
 
-         .tutorial {
+        #bloodservices {
+            font-size: 50px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+            margin-top: 15px;
+        }
+         /*.tutorial {
              height: 600px;
             
              background-image: url('/Content/picture/ttt.png');
@@ -52,27 +67,44 @@
             
             font-size: 35px;
             color: white
-        }
+        }*/
     </style>
 </head>
 <body>
+    <div class="img_blood">
+        <img class="j" src="~/Content/picture/ttt.png" />
+    </div><br />
+    <div class="container">
+        <div class="bloodinfo">
+            <center>
+                <div class="animated slideInLeft">
+                    <strong id="bloodservices" class="animated bounceIn"> Patient & Visitor Guide</strong>
+                </div>
 
+            </center>
+
+        </div>
+    </div>
+@*<div class="container">
     <div class="row">
         <div class="col-md-12 tutorial">
             <div class="animated bounceIn">
                 <h1 class="owak ">
                     <b>
-                        Patient & Visitor Guide
+                       
                     </b>
                 </h1>
             </div>
 
-            <h2 class="ok"><strong>Everything you need to know <br>about getting care at WeMedCare</strong>
+            <h2 class="ok">
+                <strong>Everything you need to know <br>about getting care at WeMedCare</strong>
             </h2>
         </div>
     </div><br><br>
+</div>*@
 
-    
+
+
 <div class="container">
     <div class="row" data-aos="fade-left" data-aos-duration="1500">
         <div class="col-md-6">
@@ -83,7 +115,8 @@
 
         <div class="col-md-6">
             <div class="plan-1">
-                <h3 ><b>Registration</b></h3>
+                <h3 ><b>Registration</b>
+                </h3>
                 <p>
                     Patient registration is the concept and set of methods needed to correlate the reference position
                     of a virtual 3D dataset gathered by computer medical imaging with the reference position of the patient.
@@ -122,9 +155,10 @@
 
         <div class="col-md-6">
             <div class="plan-1">
-                <h3><b>Medical Test</b></h3>
+                <h3><b>Medical Test</b>
+                </h3>
                 <p>
-                    New change here
+
                     Any patient can there medical test in our medical.For this at first they can excess our test menu.There are several test
                     in this menu.There is a dropdownlist they can select there necessary test and aslso see the value or
                     price of this or these test.Patient also using our WeMedCare see there test result and also print there test result.
@@ -134,10 +168,10 @@
         </div>
     </div>
 </div>
-    <script src="~/Scripts/aos.js"></script>
-    <script>
+<script src="~/Scripts/aos.js"></script>
+<script>
 
-        AOS.init();
-    </script>
+    AOS.init();
+</script>
 </body>
 </html>

@@ -7,7 +7,7 @@ namespace WeMedCare.Models
 {
     public class SpecialistModel
     {
-        public int SpecialistId { get; set; }
+        public int Id { get; set; }
         public string Specialist { get; set; }
     }
 }

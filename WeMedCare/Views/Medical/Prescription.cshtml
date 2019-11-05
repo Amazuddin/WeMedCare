@@ -1,0 +1,128 @@
+﻿
+@{
+    //Layout = null;
+}
+
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+<title>Prescription</title>
+<style>
+    .lk {
+        margin-top: 10px;
+        background-color: aliceblue;
+    }
+    .hed {
+        /*background-color: darkgray;*/
+        height: 100px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .bts {
+        background-color: #20809a;
+        width: 60%;
+        height: 55px;
+        font-size: 20px;
+    }
+    .bts:hover {
+        background-color: green;
+    }
+</style>
+<body>
+<div class="container lk">
+    <center>
+        <div class="hed">
+            <h1 style="padding-top: 25px;">Patient Prescription</h1>
+        </div>
+
+    </center>
+    <form  method="POST" >
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                @*<div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Date:</label>
+                    <div class="col-sm-9">
+                        <input  class="form-control" id="inputDate" placeholder="Date" name="Date">
+                    </div>
+                </div>*@
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Patient Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="PatientEmail">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Patient Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="PatientName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Patient Weight:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="inputWeight" placeholder="Weight" name="PatientWeight">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Patient Age:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="inputAge" placeholder="Age" name="PatientAge">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Medicine:</label>
+                    <div class="col-sm-9">
+                        <textarea style="height: 20em;" class="form-control" id="inputprescript" name="PrescriptMedicine" placeholder="Write prescription"></textarea>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">Test:</label>
+                    <div class="col-sm-9">
+                        <textarea style="height: 10em;" class="form-control" id="inputtest" name="PrescriptTest" placeholder="Write test"></textarea>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <center><button style="" type="submit" class="btn btn-success bts">Print Prescription</button></center>
+
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+@*@section scripts
+{
+
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+           
+
+            var asiaTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+            var date = new Date(asiaTime);
+            $('#inputDate').datepicker({
+                startDate: date,
+                //weekStart: 6,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            
+        });
+
+    </script>
+}*@
+

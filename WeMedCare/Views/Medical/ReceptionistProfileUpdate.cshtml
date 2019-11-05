@@ -1,0 +1,89 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+    Receptionist receptionist = ViewBag.Receptionist;
+}
+
+
+<meta name="viewport" content="width=device-width" />
+<title>ReceptionistUpdateProfile</title>
+<style>
+    .formdesign {
+        margin-top: 40px;
+    }
+
+    .t_pro {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    #ourpro {
+        font-size: 48px;
+        font-weight: bold;
+        color: cadetblue;
+    }
+
+    
+    .btdesign {
+        float: right;
+        width: 175px;
+    }
+
+    .dform {
+        margin-left: 200px;
+        margin-top: 80px;
+        margin-right: 200px;
+        padding: 62px 118px;
+        background-color: #f5f9fd;
+        border: 0px;
+        border-style: outset;
+    }
+</style>
+<body>
+
+    <div class="container">
+        <div class="t_pro">
+            <center>
+
+                <i class="far fa-user-circle" id="ourpro"><strong>Profile</strong></i>
+            </center>
+        </div>
+        <div class="formdesign">
+            <form id="Updateprofile" method="POST" action="UpdateReceptionist">
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="Name" value="@receptionist.Name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Address" name="Address" value="@receptionist.Address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputMobile" class="col-sm-2 col-form-label">Mobile</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputMobile" placeholder="Mobile" name="PhoneNo" value="@receptionist.PhoneNo">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputMobile" class="col-sm-2 col-form-label">User Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail" name="Email" placeholder="User Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+
+                        <button type="submit" class="btn btn-primary btdesign">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>

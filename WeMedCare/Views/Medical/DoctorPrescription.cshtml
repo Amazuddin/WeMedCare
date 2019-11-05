@@ -1,0 +1,46 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+    List<DoctorDetailsModel> doctors = ViewBag.doctorid;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoctorPrescription</title>
+</head>
+<body>
+<div class="img_hospital">
+    
+    <img src="~/Content/picture/presc.png" height="500px;" width="100%;">
+</div><br />
+<div class="container">
+    <center>
+        <form method="POST">
+
+            <label class="lebeldesign"><b>Doctor ID</b></label>
+            <select class="form-control" id="id" name="id">
+                <option value="">SELECT</option>
+                @foreach (DoctorDetailsModel doc in doctors)
+                {
+                    <option value="@doc.Id">@doc.Id</option>
+                }
+            </select><br/>
+           
+        </form>
+    </center>
+
+
+
+
+
+
+
+    <a class="btn btn-success" style="margin-bottom: 10px" href="@Url.Action("Pdf", "Medical")"><i class="fa fa-plus"></i> PDF</a>
+
+</div>
+</body>
+</html>

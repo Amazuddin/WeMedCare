@@ -7,11 +7,13 @@ namespace WeMedCare.Models
 {
     public class DoctorDetailsModel
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string degree { get; set; }
-        public int fees { get; set; }
-        public string schedule { get; set; }
-        public int specialistId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Degree { get; set; }
+        public int Fees { get; set; }
+        public string Schedule { get; set; }
+        public int SpecialistId { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
