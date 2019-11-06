@@ -549,64 +549,64 @@ namespace WeMedCare.Controllers
 
 
         //Doctor profile
-        //public ActionResult DoctorProfile()
-        //{
-        //    ViewBag.DoctorProfile = "active";
-        //    DoctorDetailsModel doctor = new DoctorDetailsModel();
-        //    int doctortid = Convert.ToInt32(Session["DoctorId"]);
-        //    using (var db = new MedicalContext())
-        //    {
-        //        var q = db.Doctors.Where(k => k.Id == doctortid).Select(c => new { c.Name, c.Degree, c.Fees });
-        //        foreach (var j in q)
-        //        {
-        //            doctor.Name = j.Name;
-        //            doctor.Degree = j.Degree;
-        //            doctor.Fees = j.Fees;
-        //        }
-        //        ViewBag.Doctor = doctor;
-        //        return View();
-        //    }
+        public ActionResult DoctorProfile()
+        {
+            ViewBag.DoctorProfile = "active";
+            DoctorDetailsModel doctor = new DoctorDetailsModel();
+            int doctorid = Convert.ToInt32(Session["DoctorId"]);
+            using (var db = new MedicalContext())
+            {
+                var q = db.Doctors.Where(k => k.Id == doctorid).Select(c => new { c.Name, c.Degree, c.Fees });
+                foreach (var j in q)
+                {
+                    doctor.Name = privacy.Decrypt(j.Name);
+                    doctor.Degree = privacy.Decrypt(j.Degree);
+                    doctor.Fees = j.Fees;
+                }
+                ViewBag.Doctor = doctor;
+                return View();
+            }
 
-        //}
-        //public ActionResult DoctorProfileUpdate()
-        //{
-        //    ViewBag.DoctorProfileUpdate = "active";
-        //    DoctorDetailsModel doctor = new DoctorDetailsModel();
-        //    int doctortid = Convert.ToInt32(Session["DoctorId"]);
-        //    using (var db = new MedicalContext())
-        //    {
-        //        var q = db.Doctors.Where(k => k.Id == doctortid).Select(c => new { c.Name, c.Degree, c.Fees });
-        //        foreach (var j in q)
-        //        {
-        //            doctor.Name = j.Name;
-        //            doctor.Degree = j.Degree;
-        //            doctor.Fees = j.Fees;
-        //        }
-        //        ViewBag.Doctor = doctor;
-        //        return View();
-        //    }
-        //}
-        //public ActionResult UpdateDoctor(DoctorDetailsModel doctor)
-        //{
+        }
+        public ActionResult DoctorProfileUpdate()
+        {
+            ViewBag.DoctorProfileUpdate = "active";
+            DoctorDetailsModel doctor = new DoctorDetailsModel();
+            int doctorid = Convert.ToInt32(Session["DoctorId"]);
+            using (var db = new MedicalContext())
+            {
+                var q = db.Doctors.Where(k => k.Id == doctorid).Select(c => new { c.Name, c.Degree, c.Fees });
+                foreach (var j in q)
+                {
+                    doctor.Name = privacy.Decrypt(j.Name);
+                    doctor.Degree = privacy.Decrypt(j.Degree);
+                    doctor.Fees = j.Fees;
+                }
+                ViewBag.Doctor = doctor;
+                return View();
+            }
+        }
+        public ActionResult UpdateDoctor(DoctorDetailsModel doctor)
+        {
 
-        //    int id = Convert.ToInt32(Session["DoctorId"]);
-        //    string useremail = doctor.Email;
-        //    using (var db = new MedicalContext())
-        //    {
-        //        DoctorDetailsModel pa = db.Doctors.Single(e => e.Id == id);
-        //        if (pa.Email == useremail)
-        //        {
-        //            pa.Name = doctor.Name;
-        //            pa.Degree= doctor.Degree;
-        //            pa.Fees = doctor.Fees;
-        //            db.SaveChanges();
-        //            return RedirectToAction("ReceptionistProfile", "Medical");
-        //        }
+            int id = Convert.ToInt32(Session["DoctorId"]);
+            string useremail = privacy.Encrypt(doctor.Email);
+            using (var db = new MedicalContext())
+            {
+                DoctorDetailsModel pa = db.Doctors.Single(e => e.Id == id);
+                if (pa.Email == useremail)
+                {
+                    pa.Name = privacy.Encrypt(doctor.Name);
+                    pa.Degree = privacy.Encrypt(doctor.Degree);
+                    pa.Fees = doctor.Fees;
+                    db.SaveChanges();
+                    return RedirectToAction("DoctorProfile", "Medical");
+                }
 
-        //        return RedirectToAction("ReceptionistProfile", "Medical");
+                return RedirectToAction("DoctorProfile", "Medical");
 
-        //    }
-        //}
+            }
+        }
 
         public ActionResult Information()
         {
