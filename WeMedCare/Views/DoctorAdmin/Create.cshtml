@@ -20,14 +20,7 @@
 <body>
 <div class="container ll">
     <center>
-       @* @if (ViewBag.info != null)
-        {
-
-            <div class="warning" style="background-color: gray;" id="warningLabel">
-                <label>@ViewBag.info</label>
-            </div>
-
-        }*@
+       
         @if(ViewBag.Message!=null)
         {
             <div class="warning" style="background-color: gray;" id="warningLabel">
@@ -132,7 +125,7 @@
 </div>
 <center>
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success klr" })
     </div>
 </center>
 

@@ -1,0 +1,164 @@
+﻿@model WeMedCare.Models.Nurse
+
+@{
+    //Layout = null;
+}
+
+<style>
+    .ll {
+        margin-top: 50px;
+    }
+
+    .error {
+        color: red;
+    }
+    .klr {
+        margin-top: 10px;
+    }
+</style>
+<div class="container ll">
+    <center>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="warning" style="background-color: gray;" id="warningLabel">
+                <label>@ViewBag.Message</label>
+            </div>
+        }
+
+    </center>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        
+        @using (Html.BeginForm("Create", "NurseAdmin", FormMethod.Post, new {name = "myform", id = "myform", enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+
+           
+                <center>
+                    <h1>Save Nurse</h1><br/>
+                </center>
+
+                @Html.ValidationSummary(true)
+
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    @Html.LabelFor(model => model.Designation, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Designation)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    @Html.LabelFor(model => model.Number, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Number)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-offset-2 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-default" style="background-color: #007bff; width: 150px; color: white" />
+                    </div>
+                </div>
+           
+        }
+
+
+        <center>
+            <div>
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success klr" })
+            </div>
+        </center>     
+        
+        
+    </div>
+    <div class="col-md-1"></div>
+</div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#warningLabel").hide(1000).empty();
+            }, 5000);
+        });
+        $("#myform").validate({
+            rules: {
+                Name: "required",
+                Email: {
+                    required: true,
+                    email: true
+                },
+                Password: {
+                    required: true,
+                    minlength: 6
+                },
+
+                Designation: {
+                    required: true
+
+                },
+                Number:
+                {
+                    required: true,
+                    number: true
+                }
+
+                
+            },
+            messages: {
+                Name: "Please Enter Your Name",
+                Email: {
+                    required: "Please Enter A New Email id",
+                    email: "Email id not correct"
+                },
+                Password: {
+                    required: "Please Enter Password",
+                    minlength: "Minimum length is 6"
+                },
+                
+                Designation: "Please Enter Doctor's Designation",
+                Number:
+                {
+                    required: "Please Enter Your MobileNo",
+                    number: "Must be number"
+                }
+
+            }
+
+        });
+    </script>
+}

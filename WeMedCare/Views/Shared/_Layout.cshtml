@@ -27,7 +27,7 @@
         </button>
         <div class="menual collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             
-            @if (Session["PatientId"] == null && Session["DoctorId"] == null && Session["ReceptionistId"] == null && Session["AdminId"] == null)
+            @if (Session["PatientId"] == null && Session["DoctorId"] == null && Session["NurseId"] == null && Session["ReceptionistId"] == null && Session["AdminId"] == null)
             {
                 <div class="navbar-nav">
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
@@ -59,6 +59,15 @@
 
                 </div>
             }
+            @if (Session["NurseId"] != null)
+            {
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link  @ViewBag.DoctorProfile" href="@Url.Action("DoctorProfile","Medical")">Profile</a>
+                    <a class="nav-item nav-link " href="@Url.Action("DoctorLogout", "Security")">Logout</a>
+
+                </div>
+            }
             @if (Session["ReceptionistId"] != null)
             {
                 <div class="navbar-nav">
@@ -75,8 +84,10 @@
             {
                 <div class="navbar-nav">
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link @ViewBag.Save" href="@Url.Action("Create","DoctorAdmin")">SaveDoctor</a>
-                    <a class="nav-item nav-link @ViewBag.DoctorAppointment" href="@Url.Action("Delete","DoctorAdmin")">Appointment</a>
+                    <a class="nav-item nav-link @ViewBag.Save" href="@Url.Action("Create","DoctorAdmin")">Doctor</a>
+                    <a class="nav-item nav-link @ViewBag.Create " href="@Url.Action("Create", "NurseAdmin")">Nurse</a>
+                    <a class="nav-item nav-link @ViewBag.Create " href="@Url.Action("Create", "ReceptionistAdmin")">Receptionist</a>
+                    <a class="nav-item nav-link @ViewBag.NurseAssignToWard" href="@Url.Action("NurseAssignToWard", "Admin")">AssignNurse</a>
                     <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption","Medical")">Information</a>
                     <a class="nav-item nav-link " href="@Url.Action("AdminLogout", "Security")">Logout</a>
 

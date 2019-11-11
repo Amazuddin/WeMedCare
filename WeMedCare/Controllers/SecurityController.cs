@@ -76,7 +76,21 @@ namespace WeMedCare.Controllers
                 }
                 else if (login.Type == 3)
                 {
+                    var s = db.Nurses.Where(c => c.Email == email && c.Password == password).Select(c => new { c.Id, c.Name }).ToList();
+                    if (s.Any())
+                    {
+                        foreach (var k in s)
+                        {
+                            Session["NurseId"] = k.Id;
+                            Session["NurseName"] = k.Name;
 
+                        }
+                        return RedirectToAction("Index", "Medical");
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Login Failed";
+                    }
                 }
                 else if (login.Type == 4)
                 {
@@ -146,6 +160,12 @@ namespace WeMedCare.Controllers
         {
             Session["DoctorId"] = null;
             Session["DoctorName"] = null;
+            return RedirectToAction("LogIn", "Security");
+        }
+        public ActionResult NurseLogout()
+        {
+            Session["NurseId"] = null;
+            Session["NurseName"] = null;
             return RedirectToAction("LogIn", "Security");
         }
         public ActionResult ReceptionistLogout()

@@ -487,7 +487,7 @@ namespace WeMedCare.Controllers
         public ActionResult MakePdf(Prescription prescription)
         {
             DoctorView doctor = new DoctorView();
-           
+            //string email = privacy.Encrypt(prescription.PatientEmail);
             using (var db = new MedicalContext())
             {
                 var q = 
@@ -508,6 +508,22 @@ namespace WeMedCare.Controllers
                     doctor.DocSpecialist = j.dspecialist;
                     doctor.DocDegree = privacy.Decrypt(j.dQualification);
                 }
+                //var kl = from b in db.Registers
+                //         where b.Email == email
+                //         select new
+                //         {
+
+                //             PatientName = b.Name,
+
+                //             PatientAge = b.Age
+                //         };
+                //foreach (var k in kl)
+                //{
+
+                //    prescription.PatientName = privacy.Decrypt(k.PatientName);
+                //    prescription.PatientAge = k.PatientAge;
+                //}
+
                 ViewBag.Doctor = doctor;
                 return View(prescription);
             }
@@ -518,30 +534,81 @@ namespace WeMedCare.Controllers
             ViewBag.Prescription = "active";
             return View();
         }
+
+        public JsonResult GetAllPatient(string date)
+        {
+            List<AppointmentView> pt = new List<AppointmentView>();
+            int doc = Convert.ToInt32(Session["DoctorId"]);
+           
+            using (var ctx = new MedicalContext())
+            {
+                var data = from a in ctx.Appointment
+                           join p in ctx.Registers
+                               on a.PatientId equals p.Id
+                           where a.DoctorId == doc && a.Date == date
+                            
+                           select new
+                           {
+                               pappointmentId = a.Id,
+                               patientName = p.Name,
+                               patientAge = p.Age,
+                               
+                           };
+                foreach (var dc in data)
+                {
+                    AppointmentView p = new AppointmentView();
+                    p.AppointmentId = dc.pappointmentId;
+                    p.PatientName= privacy.Decrypt(dc.patientName);
+                    p.Age = dc.patientAge;
+                    pt.Add(p);
+                }
+            }
+            return Json(pt);
+        }
         [HttpPost]
-        public ActionResult Prescription(Prescription prescription)
+        public ActionResult Prescription(Prescription prescription,int AppointmentId)
         {
             prescription.DocId = Convert.ToInt32(Session["DoctorId"]);
             ViewBag.Prescription = "active";
             string searchdate = DateTime.Now.ToString("MM/dd/yyyy");
             string pdfname;
-            pdfname = DateTime.Now.ToString("dd-MM-yyyy") +"_"+Guid.NewGuid()+".pdf";
+            pdfname = DateTime.Now.ToString("dd-MM-yyyy") + "_" + Guid.NewGuid() + ".pdf";
+            using (var db = new MedicalContext())
+            {
+                var kl = from ap in db.Appointment
+                         join p in db.Registers
+                             on ap.PatientId equals p.Id
+                         join d in db.Doctors
+                             on ap.DoctorId equals d.Id
+                         where ap.Id == AppointmentId
+                         select new
+                         {
+                             PatientName = p.Name,
+                             //PatientPhone = p.PhoneNo,
+                             PatientAge = p.Age
+                         };
+                foreach (var v in kl)
+                {
+                    
+                    prescription.PatientName = privacy.Decrypt(v.PatientName);
+                    prescription.PatientAge = v.PatientAge;
+                    
+                }
+                
+                PatientAppointmentModel app = db.Appointment.Single(c => c.Id==AppointmentId && c.DoctorId == prescription.DocId
+                    && c.Date == searchdate);
+                app.Prescription = "Prescriptions/" + pdfname;
+                db.SaveChanges();
+            }
+            
             var printpdf = new ActionAsPdf("MakePdf", prescription) { FileName = pdfname };
-
             string path = Server.MapPath("~/Prescriptions");
             string a = Path.Combine(path, pdfname);
             var byteArray = printpdf.BuildPdf(ControllerContext);
             var fileStream = new FileStream(a, FileMode.Create, FileAccess.Write);
             fileStream.Write(byteArray, 0, byteArray.Length);
             fileStream.Close();
-            using (var db = new MedicalContext())
-            {
-                PatientAppointmentModel app = db.Appointment.Single(c => c.Email == prescription.PatientEmail && c.DoctorId==prescription.DocId 
-                    && c.Date==searchdate);
-                app.Prescription = "Prescriptions/" + pdfname;
-                
-                db.SaveChanges();
-            }
+           
             return printpdf;
         }
 
@@ -612,7 +679,7 @@ namespace WeMedCare.Controllers
         {
             ViewBag.Information = "active";
             int id = Convert.ToInt32(Session["PatientId"]);
-            List<AppointmentView> appointmentList = new List<AppointmentView>();
+            List<DoctorAppointmentView> appointmentList = new List<DoctorAppointmentView>();
            
             using (var db = new MedicalContext())
             {
@@ -631,7 +698,7 @@ namespace WeMedCare.Controllers
                             });
                 foreach (var d in q)
                 {
-                    AppointmentView ap = new AppointmentView();
+                    DoctorAppointmentView ap = new DoctorAppointmentView();
                     ap.DoctorName = privacy.Decrypt(d.appointmentName);
                     ap.Date = d.appointmentDate;
                     ap.Specialist = d.appointmentSpecialist;

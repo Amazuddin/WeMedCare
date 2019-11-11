@@ -7,13 +7,13 @@ namespace WeMedCare.Models
 {
     public class AppointmentView
     {
-        public int Id { get; set; }
-        public string Date { get; set; }
-        public string DoctorName { get; set; }
-        public string Specialist { get; set; }
-        public string Prescription { get; set; }
+        public int AppointmentId { get; set; }
+        public int PatientId { get; set; }
+        public string PatientName { get; set; }
+        public string PatientAddress { get; set; }
+        public int Age { get; set; }
+        public string PhoneNo { get; set; }
         
-        public int Approval { get; set; }
         
         
     }

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<WeMedCare.Models.Nurse>
+
+@{
+    //Layout = null;
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+<style>
+    .kly {
+        margin-top: 20px;
+        width: 140px;
+    }
+
+    .kk {
+        width: 105px;
+    }
+
+    .ll {
+        width: 105px;
+    }
+    .klp {
+        margin-bottom: 250px;
+    }
+</style>
+<body>
+    <div class="container klp">
+        <center>
+            <p>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-dark kly" })
+            </p>
+        </center>
+
+    <table id="datatable" class="table table-bordered table-striped table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            @*<th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                @*<td>
+                            @Html.DisplayFor(modelItem => item.Password)
+                        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}, new {@class = "btn btn-primary kk"}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id}, new {@class = "btn btn-danger ll"})
+                </td>
+            </tr>
+        }
+
+    </table>
+        </div>
+</body>
+
+@section scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#datatable').DataTable();
+        });
+    </script>
+}

@@ -2,7 +2,8 @@
 @{
     //Layout = null;
 }
-
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
@@ -10,7 +11,7 @@
 <style>
     .lk {
         margin-top: 10px;
-        background-color: aliceblue;
+        /*background-color: aliceblue;*/
     }
     .hed {
         /*background-color: darkgray;*/
@@ -27,6 +28,14 @@
     .bts:hover {
         background-color: green;
     }
+    .klr {
+        margin-top: 30px;
+    }
+    .but{
+        margin-top: 5px;
+        margin-bottom: 25px;
+        width: 110px;
+    }
 </style>
 <body>
 <div class="container lk">
@@ -36,56 +45,94 @@
         </div>
 
     </center>
-    <form  method="POST" >
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <table>
+                    <tr>
+                        <td style="padding-right: 10px; font-size: 20px;">
+                            Date:
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="tddate" placeholder="Date" required="" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="btn btn-info but" id="searchbtn" style="">Search</button></td>
+                    </tr>
+                    </tr>
+                </table>
+              
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+       
+        <table id="patable" class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <td>Serial No.</td>
+                <td>Patient's Name</td>
+                <td>Age</td>
+                <td>Call Patient</td>
+            </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+
+    <form method="post">
+        
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-8 klr">
+
+
+                <div id="patid"></div>
+
+
                 @*<div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Date:</label>
-                    <div class="col-sm-9">
-                        <input  class="form-control" id="inputDate" placeholder="Date" name="Date">
-                    </div>
-                </div>*@
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Patient Email:</label>
+                    <label for="inputEmail" class="col-sm-3 col-form-label">Patient Email:</label>
                     <div class="col-sm-9">
                         <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="PatientEmail">
                     </div>
-                </div>
+                </div>*@
+                @*<div class="form-group row">
+        <label for="inputName" class="col-sm-3 col-form-label">Patient Name:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputName" placeholder="Name" name="PatientName">
+        </div>
+    </div>*@
                 <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Patient Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="PatientName">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Patient Weight:</label>
+                    <label for="inputWeight" class="col-sm-3 col-form-label">Patient Weight:</label>
                     <div class="col-sm-9">
                         <input type="number" class="form-control" id="inputWeight" placeholder="Weight" name="PatientWeight">
                     </div>
                 </div>
+                @*<div class="form-group row">
+        <label for="inputName" class="col-sm-3 col-form-label">Patient Age:</label>
+        <div class="col-sm-9">
+            <input type="number" class="form-control" id="inputAge" placeholder="Age" name="PatientAge">
+        </div>
+    </div>*@
                 <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Patient Age:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="inputAge" placeholder="Age" name="PatientAge">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Medicine:</label>
+                    <label for="inputprescript" class="col-sm-3 col-form-label">Medicine:</label>
                     <div class="col-sm-9">
                         <textarea style="height: 20em;" class="form-control" id="inputprescript" name="PrescriptMedicine" placeholder="Write prescription"></textarea>
 
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Test:</label>
+                    <label for="inputtest" class="col-sm-3 col-form-label">Test:</label>
                     <div class="col-sm-9">
                         <textarea style="height: 10em;" class="form-control" id="inputtest" name="PrescriptTest" placeholder="Write test"></textarea>
 
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label"></label>
+                    <label for="" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
                         <center><button style="" type="submit" class="btn btn-success bts">Print Prescription</button></center>
 
@@ -95,34 +142,92 @@
             </div>
         </div>
     </form>
-</div>
+    </div>
 </body>
-@*@section scripts
+
+
+@section scripts
 {
-
-
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.js"></script>
-    <script>
-
-
-        $(document).ready(function () {
-           
-
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+   <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+    
+    <script type="text/javascript">
+        function valueappend(id) {
+            var appointmentid = id;
+            $('#patid').empty();
+            console.log(appointmentid);
+            $('#patid').append('<input type="hidden" name="AppointmentId" value="' + appointmentid + '">');
+        }
+        $(document).ready(function() {
+            var table = $('#patable').DataTable();
             var asiaTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
             var date = new Date(asiaTime);
-            $('#inputDate').datepicker({
+            $('#tddate').datepicker({
                 startDate: date,
-                //weekStart: 6,
                 autoclose: true,
                 todayHighlight: true
             });
+           
 
+            $('#searchbtn').on('click', function () {
+
+
+                table.clear();
+
+                var serialNo = 1;
+                var date = $('#tddate').val();
+                var json = { date: date };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllPatient", "Medical")',
+                    contentType: 'application/json',
+                    data: JSON.stringify(json),
+                    success: function (response) {
+
+                        $.each(response, function (key, value) {
+                           
+                            var cca = "callbtn" + serialNo;
+                            var butt = "<button onclick=\"valueappend(" + value.AppointmentId + ")\" id= " + cca + "\" style=\"width: 100%; background-color:blue;\" class=\"btn btn-success ttb\">Call</button>" +
+                                "<div style=\"height: 0; width: 0; visibility: hidden;\" id=\"AppointmentId\">" + value.AppointmentId + "</div>";
+                            table.row.add([
+                               serialNo,
+                               value.PatientName,
+                               value.Age,
+                               butt
+
+                            ]).draw(false);
+                            serialNo += 1;
+                        });
+
+                    }
+
+                });
+                return false;
+            });
+
+
+
+
+           
+
+
+
+            //$(document).on('click', '.ttb', function () {
+                
+    
+            //    $('#patid').empty();
+
+            //    var knn = document.getElementById('AppointmentId').innerHTML;
+            //    //var idk = $('#AppointmentId').val();
+            //    console.log(knn);
+            //    $('#patid').append('<input type="hidden" name="AppointmentId" value="' + knn + '">');
+
+
+            //    return false;
+            //});
             
-        });
-
+    });
     </script>
-}*@
 
+}

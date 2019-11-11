@@ -19,8 +19,9 @@ namespace WeMedCare.Context
         public DbSet<Register> Registers { get; set; }
         public DbSet<TestForm> TestForms { get; set; }
         public DbSet<Receptionist> Receptionist { get; set; }
-        public DbSet<Admin> Admins { get; set; } 
-        
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Nurse> Nurses { get; set; }
+        public DbSet<Ward> Wards { get; set; } 
 
     }
 }

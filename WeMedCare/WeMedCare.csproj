@@ -165,9 +165,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\MedicalContext.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DoctorAdminController.cs" />
     <Compile Include="Controllers\MedicalController.cs" />
+    <Compile Include="Controllers\NurseAdminController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
+    <Compile Include="Controllers\ReceptionistAdminController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,9 +180,11 @@
     <Compile Include="Models\AppointmentView.cs" />
     <Compile Include="Models\BloodDonorModel.cs" />
     <Compile Include="Models\BloodModel.cs" />
+    <Compile Include="Models\DoctorAppointmentView.cs" />
     <Compile Include="Models\DoctorView.cs" />
     <Compile Include="Models\DoctorDetailsModel.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Nurse.cs" />
     <Compile Include="Models\PatientAppointmentModel.cs" />
     <Compile Include="Models\Prescription.cs" />
     <Compile Include="Models\Receptionist.cs" />
@@ -187,6 +192,7 @@
     <Compile Include="Models\Services.cs" />
     <Compile Include="Models\SpecialistModel.cs" />
     <Compile Include="Models\TestForm.cs" />
+    <Compile Include="Models\Ward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -712,6 +718,17 @@
     <Content Include="Views\Security\Registration.cshtml" />
     <Content Include="Views\Security\LogIn.cshtml" />
     <Content Include="Views\Security\AdminLogin.cshtml" />
+    <Content Include="Views\NurseAdmin\Create.cshtml" />
+    <Content Include="Views\NurseAdmin\Delete.cshtml" />
+    <Content Include="Views\NurseAdmin\Details.cshtml" />
+    <Content Include="Views\NurseAdmin\Edit.cshtml" />
+    <Content Include="Views\NurseAdmin\Index.cshtml" />
+    <Content Include="Views\Admin\NurseAssignToWard.cshtml" />
+    <Content Include="Views\ReceptionistAdmin\Create.cshtml" />
+    <Content Include="Views\ReceptionistAdmin\Delete.cshtml" />
+    <Content Include="Views\ReceptionistAdmin\Details.cshtml" />
+    <Content Include="Views\ReceptionistAdmin\Edit.cshtml" />
+    <Content Include="Views\ReceptionistAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

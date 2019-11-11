@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WeMedCare.Models.DoctorDetailsModel>
+﻿@model IEnumerable<WeMedCare.Models.Receptionist>
 
 @{
     //Layout = null;
@@ -6,53 +6,51 @@
 
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width" />
 <title>Index</title>
 <style>
     .kly {
         margin-top: 20px;
         width: 140px;
     }
+
     .kk {
         width: 105px;
     }
+
     .ll {
         width: 105px;
     }
+
+    .klp {
+        margin-bottom: 250px;
+    }
 </style>
 <body>
-    <div class="container">
-
+    <div class="container klp">
         <center>
             <p>
                 @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-dark kly" })
             </p>
         </center>
-
         <table id="datatable" class="table table-bordered table-striped table-hover">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Degree)
+                    @Html.DisplayNameFor(model => model.PhoneNo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Fees)
+                    @Html.DisplayNameFor(model => model.Address)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Schedule)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.SpecialistId)
-                    </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
                 @*<th>
-                        @Html.DisplayNameFor(model => model.Password)
-                    </th>*@
-                <th></th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>*@
+                <th>Edit/Delete</th>
             </tr>
 
             @foreach (var item in Model)
@@ -62,23 +60,17 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Degree)
+                        @Html.DisplayFor(modelItem => item.PhoneNo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Fees)
+                        @Html.DisplayFor(modelItem => item.Address)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Schedule)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.SpecialistId)
-                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     @*<td>
-                            @Html.DisplayFor(modelItem => item.Password)
-                        </td>*@
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>*@
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary kk" }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger ll" })
@@ -87,9 +79,9 @@
             }
 
         </table>
-
-    </div>
+        </div>
 </body>
+
 @section scripts{
     <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
     <script>
