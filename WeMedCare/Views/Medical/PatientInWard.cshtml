@@ -1,0 +1,99 @@
+﻿@using WeMedCare.Models
+
+@{
+    //Layout = null;
+}
+
+
+    <meta name="viewport" content="width=device-width" />
+<title>PatientInWard</title>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<style>
+    .hed {
+        
+        height: 100px;
+        /*margin-top: 25px;*/
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+<div class="container">
+    <center>
+        <div class="hed">
+            <h1 style="padding-top: 25px;">Patient's Admit In Ward</h1>
+        </div>
+
+    </center>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <table style="margin: 40px;">
+                    <tr>
+                        <td style="padding-right: 30px; font-size: 20px;">Select Ward</td>
+                        <td>
+                            <select name="wards" id="wardsid" class="form-control" style="width: 220px;">
+                                <option value="">Select Ward</option>
+                                @foreach (Ward ward in ViewBag.Wards)
+                                {
+                                    <option value="@ward.Id">@ward.Name</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+            </center>
+            <table id="patientward" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <td>Patient's Name</td>
+                        <td>Age</td>
+                        <td>Address</td>
+                        <td>Doctor Name</td>
+                        
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+  
+</div>
+</body>
+@section scripts
+{
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#patientward').DataTable();
+
+            $('#wardsid').on('change', function () {
+                var Id = $('#wardsid').val();
+
+                table.clear().draw(false);
+                var json = { id: Id };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllPatientByWard", "Medical")',
+                    contentType: 'application/json',
+                    data: JSON.stringify(json),
+                    success: function (response) {
+                        $.each(response, function (key, value) {
+
+                            table.row.add([
+                                value.PatientName,
+                                value.PatientAge,
+                                value.PatientAddress,
+                                value.DoctorName
+                                
+
+                            ]).draw(false);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

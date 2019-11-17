@@ -72,8 +72,8 @@
             {
                 <div class="navbar-nav">
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
-                   
-                    <a class="nav-item nav-link @ViewBag.DoctorAppointment" href="@Url.Action("DoctorAppointment","Medical")">Appointment</a>
+                    <a class="nav-item nav-link @ViewBag.DoctorAppointment" href="@Url.Action("DoctorAppointment", "Medical")">Appointment</a>
+                    <a class="nav-item nav-link @ViewBag.PatientInWard" href="@Url.Action("PatientInWard","Medical")">PatientInWard</a>
                     <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption", "Medical")">Information</a>
                     <a class="nav-item nav-link  @ViewBag.ReciptionistProfile" href="@Url.Action("ReceptionistProfile","Medical")">Profile</a>
                     <a class="nav-item nav-link " href="@Url.Action("ReceptionistLogout", "Security")">Logout</a>
@@ -85,8 +85,8 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link @ViewBag.Save" href="@Url.Action("Create","DoctorAdmin")">Doctor</a>
-                    <a class="nav-item nav-link @ViewBag.Create " href="@Url.Action("Create", "NurseAdmin")">Nurse</a>
-                    <a class="nav-item nav-link @ViewBag.Create " href="@Url.Action("Create", "ReceptionistAdmin")">Receptionist</a>
+                    <a class="nav-item nav-link @ViewBag.NurseCreate " href="@Url.Action("Create", "NurseAdmin")">Nurse</a>
+                    <a class="nav-item nav-link @ViewBag.ReceptionistCreate " href="@Url.Action("Create", "ReceptionistAdmin")">Receptionist</a>
                     <a class="nav-item nav-link @ViewBag.NurseAssignToWard" href="@Url.Action("NurseAssignToWard", "Admin")">AssignNurse</a>
                     <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption","Medical")">Information</a>
                     <a class="nav-item nav-link " href="@Url.Action("AdminLogout", "Security")">Logout</a>

@@ -532,6 +532,12 @@ namespace WeMedCare.Controllers
         public ActionResult Prescription()
         {
             ViewBag.Prescription = "active";
+            List<Ward> wards=new List<Ward>();
+            using (var db=new MedicalContext())
+            {
+                wards = db.Wards.ToList();
+            }
+            ViewBag.Wards = wards;
             return View();
         }
 
@@ -575,7 +581,13 @@ namespace WeMedCare.Controllers
             pdfname = DateTime.Now.ToString("dd-MM-yyyy") + "_" + Guid.NewGuid() + ".pdf";
             using (var db = new MedicalContext())
             {
-                var kl = from ap in db.Appointment
+                if (prescription.WardId > 0)
+                {
+                    PatientAppointmentModel appointment = db.Appointment.Find(AppointmentId);
+                    appointment.WardId = prescription.WardId;
+                    db.SaveChanges();
+                }
+                var presdoc = from ap in db.Appointment
                          join p in db.Registers
                              on ap.PatientId equals p.Id
                          join d in db.Doctors
@@ -584,10 +596,9 @@ namespace WeMedCare.Controllers
                          select new
                          {
                              PatientName = p.Name,
-                             //PatientPhone = p.PhoneNo,
                              PatientAge = p.Age
                          };
-                foreach (var v in kl)
+                foreach (var v in presdoc)
                 {
                     
                     prescription.PatientName = privacy.Decrypt(v.PatientName);
@@ -710,6 +721,51 @@ namespace WeMedCare.Controllers
                
             }
             return View(appointmentList);
+        }
+
+        public ActionResult PatientInWard()
+        {
+            ViewBag.PatientInWard = "active";
+            List<Ward> wards=new List<Ward>();
+            using (var db = new MedicalContext())
+            {
+                wards = db.Wards.ToList();
+            }
+            ViewBag.Wards = wards;
+            return View();
+        }
+        public JsonResult GetAllPatientByWard(int id)
+        {
+            List<Prescription> prescriptions = new List<Prescription>();
+            using (var db = new MedicalContext())
+            {
+                var info = from a in db.Appointment
+                        join p in db.Registers
+                            on a.PatientId equals p.Id
+                        join d in db.Doctors
+                            on a.DoctorId equals d.Id
+                        where a.WardId == id
+                        select new
+                        {
+                            appointmentId = a.Id,
+                            PatientName = p.Name,
+                            PatientAge = p.Age,
+                            patientAddress = p.Address,
+                            DoctorName = d.Name,
+                        };
+
+                foreach (var k in info)
+                {
+                    Prescription pres = new Prescription();
+                    pres.Id = k.appointmentId;
+                    pres.PatientName = privacy.Decrypt(k.PatientName);
+                    pres.PatientAge = k.PatientAge;
+                    pres.PatientAddress = privacy.Decrypt(k.patientAddress);
+                    pres.DoctorName = privacy.Decrypt(k.DoctorName);
+                    prescriptions.Add(pres);
+                }
+            }
+            return Json(prescriptions);
         }
 
        

@@ -50,7 +50,7 @@ namespace WeMedCare.Controllers
         // GET: /NurseAdmin/Create
         public ActionResult Create()
         {
-            ViewBag.Create = "active";
+            ViewBag.NurseCreate = "active";
             return View();
         }
         public static string EncodePassword(string password)

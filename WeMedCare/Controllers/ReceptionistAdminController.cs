@@ -59,7 +59,7 @@ namespace WeMedCare.Controllers
         // GET: /ReceptionistAdmin/Create
         public ActionResult Create()
         {
-            ViewBag.Create = "active";
+            ViewBag.ReceptionistCreate = "active";
             return View();
         }
 

@@ -729,6 +729,7 @@
     <Content Include="Views\ReceptionistAdmin\Details.cshtml" />
     <Content Include="Views\ReceptionistAdmin\Edit.cshtml" />
     <Content Include="Views\ReceptionistAdmin\Index.cshtml" />
+    <Content Include="Views\Medical\PatientInWard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

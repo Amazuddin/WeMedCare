@@ -1,6 +1,8 @@
-﻿
+﻿@using WeMedCare.Models
+
 @{
     //Layout = null;
+    List<Ward> wards = ViewBag.Wards;
 }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -35,6 +37,12 @@
         margin-top: 5px;
         margin-bottom: 25px;
         width: 110px;
+    }
+    #patable {
+        margin-bottom: 20px;
+    }
+    .fg {
+        margin-top: 30px;
     }
 </style>
 <body>
@@ -75,7 +83,7 @@
                 <td>Serial No.</td>
                 <td>Patient's Name</td>
                 <td>Age</td>
-                <td>Call Patient</td>
+                <td>Prescribe Patient</td>
             </tr>
             </thead>
             <tbody>
@@ -86,49 +94,42 @@
     <form method="post">
         
         <div class="row">
-            <div class="col-md-2"></div>
+
             <div class="col-md-8 klr">
 
 
                 <div id="patid"></div>
-
-
-                @*<div class="form-group row">
-                    <label for="inputEmail" class="col-sm-3 col-form-label">Patient Email:</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="PatientEmail">
-                    </div>
-                </div>*@
-                @*<div class="form-group row">
-        <label for="inputName" class="col-sm-3 col-form-label">Patient Name:</label>
-        <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputName" placeholder="Name" name="PatientName">
-        </div>
-    </div>*@
                 <div class="form-group row">
                     <label for="inputWeight" class="col-sm-3 col-form-label">Patient Weight:</label>
                     <div class="col-sm-9">
                         <input type="number" class="form-control" id="inputWeight" placeholder="Weight" name="PatientWeight">
                     </div>
                 </div>
-                @*<div class="form-group row">
-        <label for="inputName" class="col-sm-3 col-form-label">Patient Age:</label>
-        <div class="col-sm-9">
-            <input type="number" class="form-control" id="inputAge" placeholder="Age" name="PatientAge">
-        </div>
-    </div>*@
+               
                 <div class="form-group row">
                     <label for="inputprescript" class="col-sm-3 col-form-label">Medicine:</label>
                     <div class="col-sm-9">
-                        <textarea style="height: 20em;" class="form-control" id="inputprescript" name="PrescriptMedicine" placeholder="Write prescription"></textarea>
+                        <textarea style="height: 20em;" class="form-control" id="inputprescript" name="PrescriptMedicine" placeholder="Write prescription...."></textarea>
 
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputtest" class="col-sm-3 col-form-label">Test:</label>
                     <div class="col-sm-9">
-                        <textarea style="height: 10em;" class="form-control" id="inputtest" name="PrescriptTest" placeholder="Write test"></textarea>
+                        <textarea style="height: 10em;" class="form-control" id="inputtest" name="PrescriptTest" placeholder="Write test...."></textarea>
 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputWeight" class="col-sm-3 col-form-label">Select Ward:</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" name="WardId">
+                            <option value="0">Select Ward</option>
+                            @foreach (Ward ward in ViewBag.Wards)
+                            {
+                                <option value="@ward.Id">@ward.Name</option>
+                            }
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -138,7 +139,28 @@
 
                     </div>
                 </div>
-                <div class="col-md-2"></div>
+                @*<div class="col-md-2"></div>*@
+
+            </div>
+            <div class="col-md-4 fg">
+
+                <table id="call">
+                    <tr>
+                        <th style="font-size: 18px;">Serial No: </th>
+                        <td>
+                            <div id="patientserial"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="font-size: 18px;">Patient Name : </th>
+                        <td id="patientname"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-size: 18px;">Age : </th>
+                        <td id="patientage"></td>
+                    </tr>
+                </table>
+
             </div>
         </div>
     </form>
@@ -159,6 +181,7 @@
             console.log(appointmentid);
             $('#patid').append('<input type="hidden" name="AppointmentId" value="' + appointmentid + '">');
         }
+
         $(document).ready(function() {
             var table = $('#patable').DataTable();
             var asiaTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
@@ -188,7 +211,7 @@
                         $.each(response, function (key, value) {
                            
                             var cca = "callbtn" + serialNo;
-                            var butt = "<button onclick=\"valueappend(" + value.AppointmentId + ")\" id= " + cca + "\" style=\"width: 100%; background-color:blue;\" class=\"btn btn-success ttb\">Call</button>" +
+                            var butt = "<button onclick=\"valueappend(" + value.AppointmentId + ")\" id= " + cca + "\" style=\"width: 100%; background-color:blue;\" class=\"btn btn-success sna\">Prescribe</button>" +
                                 "<div style=\"height: 0; width: 0; visibility: hidden;\" id=\"AppointmentId\">" + value.AppointmentId + "</div>";
                             table.row.add([
                                serialNo,
@@ -207,25 +230,20 @@
             });
 
 
-
-
-           
-
-
-
-            //$(document).on('click', '.ttb', function () {
+            $(document).on('click', '.sna', function () {
                 
-    
-            //    $('#patid').empty();
-
-            //    var knn = document.getElementById('AppointmentId').innerHTML;
-            //    //var idk = $('#AppointmentId').val();
-            //    console.log(knn);
-            //    $('#patid').append('<input type="hidden" name="AppointmentId" value="' + knn + '">');
-
-
-            //    return false;
-            //});
+                $('#patientserial').empty();
+                $('#patientname').empty();
+                $('#patientage').empty();
+                var $row = $(this).closest("tr"),
+                    $ser = $row.find("td:nth-child(1)").text(),
+                    $name = $row.find("td:nth-child(2)").text(),
+                    $age = $row.find("td:nth-child(3)").text();
+                $('#patientserial').append($ser);
+                $('#patientname').append($name);
+                $('#patientage').append($age);
+                return false;
+            });       
             
     });
     </script>

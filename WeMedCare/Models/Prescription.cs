@@ -10,7 +10,8 @@ namespace WeMedCare.Models
     {
         public int Id { get; set; }
         public int DocId { get; set; }
-        //public string PatientEmail { get; set; }
+        public string PatientAddress { get; set; }
+        public string DoctorName { get; set; }
         public string Date { get; set; }
         public string PatientName { get; set; }
        
@@ -21,7 +22,7 @@ namespace WeMedCare.Models
         public string PrescriptMedicine { get; set; }
        
         public string PrescriptTest { get; set; }
-        //public int WardId { get; set; }
+        public int WardId { get; set; }
         
     }
 }
