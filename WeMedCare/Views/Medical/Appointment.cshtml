@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="~/Content/appointment.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
     <style>
         .warning {
             background-color: powderblue;
@@ -57,9 +59,7 @@
                     </div>
                     <div class="gaps">
                         <p>Select Date</p>
-                        <input id="datepicker1" name="Date" type="text" autocomplete="off" readonly="readonly" value=""
-                               onfocus="this.value = '';" onblur=" if (this.value === '')
-    { this.value = 'dd/mm/yyyy'; }" required="">
+                        <input id="datepick" name="Date" type="text" autocomplete="off" value="" required="">
                     </div>
                 </div>
                 <div class="right-agileinfo same">
@@ -98,22 +98,32 @@
 </div>
     @section scripts
     {
-
-
-        <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-        <script src="~/Scripts/wickedpicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    @*<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />*@
+        @*<script src="~/Scripts/jquery-2.1.4.min.js"></script>
         <link href="~/Content/jquery-ui.css" rel="stylesheet"/>
-        <script src="~/Scripts/jquery-ui.js"></script>
-        <script>
+        <script src="~/Scripts/jquery-ui.js"></script>*@
+        @*<script>
             $(function() {
                 $("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
             });
-        </script>
+        </script>*@
         <script type="text/javascript">
             $(function () {
                 setTimeout(function () {
                     $("#warningLabel").hide(1000).empty();
                 }, 5000);
+
+                var asiaTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+                var date = new Date(asiaTime);
+                $('#datepick').datepicker({
+                    startDate: date,
+                    //weekStart: 6,
+                    autoclose: true,
+                    todayHighlight: true
+                });
 
                 $('#SpecialistId').on('change', function() {
 

@@ -84,6 +84,7 @@
                 <td>Patient's Name</td>
                 <td>Age</td>
                 <td>Prescribe Patient</td>
+                <td>History</td>
             </tr>
             </thead>
             <tbody>
@@ -182,6 +183,11 @@
             $('#patid').append('<input type="hidden" name="AppointmentId" value="' + appointmentid + '">');
         }
 
+        function hisappend(id) {
+            window.open('PatientHistory/' + id, '_blank');
+        }
+
+
         $(document).ready(function() {
             var table = $('#patable').DataTable();
             var asiaTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
@@ -210,15 +216,18 @@
 
                         $.each(response, function (key, value) {
                            
-                            var cca = "callbtn" + serialNo;
-                            var butt = "<button onclick=\"valueappend(" + value.AppointmentId + ")\" id= " + cca + "\" style=\"width: 100%; background-color:blue;\" class=\"btn btn-success sna\">Prescribe</button>" +
+                            var callid = "callbtn" + serialNo;
+                            var hisid = "historybtn" + serialNo;
+                            var butt = "<button onclick=\"valueappend(" + value.AppointmentId + ")\" id= " + callid + "\" style=\"width: 100%; background-color:blue;\" class=\"btn btn-success sna\">Prescribe</button>" +
                                 "<div style=\"height: 0; width: 0; visibility: hidden;\" id=\"AppointmentId\">" + value.AppointmentId + "</div>";
+                            var history = "<button  id= " + hisid + "\" onclick=\"hisappend(" + value.AppointmentId + ")\" style=\"width: 100%;\"  " +
+                               "class=\"btn btn-secondary\">History</button>";
                             table.row.add([
                                serialNo,
                                value.PatientName,
                                value.Age,
-                               butt
-
+                               butt,
+                               history
                             ]).draw(false);
                             serialNo += 1;
                         });

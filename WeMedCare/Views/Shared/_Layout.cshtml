@@ -33,7 +33,7 @@
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link  @ViewBag.Doctor" href="@Url.Action("DoctorInfo", "medical")">Doctor</a>
                     <a class="nav-item nav-link @ViewBag.Tutorial" href="@Url.Action("Tutorial", "medical")">Tutorial</a>
-                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption", "medical")">Information</a>
+                    <a class="nav-item nav-link @ViewBag.HospitalContact" href="@Url.Action("HospitalContact", "medical")">Information</a>
                     <a class="nav-item nav-link  @ViewBag.Login" href="@Url.Action("LogIn", "Security")">Login</a>
                     <a class="nav-item nav-link  @ViewBag.Registration" href="@Url.Action("Registration", "Security")">Register</a>
                 </div>
@@ -44,7 +44,7 @@
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link  @ViewBag.Appointment" href="@Url.Action("Appointment","Medical")">Appointment</a>
                     <a class="nav-item nav-link @ViewBag.Tutorial" href="@Url.Action("Tutorial","Medical")">Tutorial</a>
-                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Information","Medical")">Information</a>
+                    <a class="nav-item nav-link @ViewBag.HospitalContact" href="@Url.Action("Information", "Medical")">Information</a>
                     <a class="nav-item nav-link  @ViewBag.PatientProfile" href="@Url.Action("PatientProfile", "Medical")">Profile</a>
                     <a class="nav-item nav-link " href="@Url.Action("PatientLogout", "Security")">Logout</a>
                 </div>
@@ -63,8 +63,8 @@
             {
                 <div class="navbar-nav">
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link  @ViewBag.DoctorProfile" href="@Url.Action("DoctorProfile","Medical")">Profile</a>
-                    <a class="nav-item nav-link " href="@Url.Action("DoctorLogout", "Security")">Logout</a>
+                    <a class="nav-item nav-link  @ViewBag.NurseProfile" href="@Url.Action("NurseProfile","Medical")">Profile</a>
+                    <a class="nav-item nav-link " href="@Url.Action("NurseLogout", "Security")">Logout</a>
 
                 </div>
             }
@@ -88,6 +88,7 @@
                     <a class="nav-item nav-link @ViewBag.NurseCreate " href="@Url.Action("Create", "NurseAdmin")">Nurse</a>
                     <a class="nav-item nav-link @ViewBag.ReceptionistCreate " href="@Url.Action("Create", "ReceptionistAdmin")">Receptionist</a>
                     <a class="nav-item nav-link @ViewBag.NurseAssignToWard" href="@Url.Action("NurseAssignToWard", "Admin")">AssignNurse</a>
+                    <a class="nav-item nav-link @ViewBag.PatientRealeseFromWard " href="@Url.Action("PatientRealeseFromWard", "Admin")">Realese</a>
                     <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption","Medical")">Information</a>
                     <a class="nav-item nav-link " href="@Url.Action("AdminLogout", "Security")">Logout</a>
 

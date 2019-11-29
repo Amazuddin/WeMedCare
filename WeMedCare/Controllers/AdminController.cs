@@ -70,6 +70,60 @@ namespace WeMedCare.Controllers
             }
             return Json(1);
         }
+        public ActionResult PatientRealeseFromWard()
+        {
+            ViewBag.PatientRealeseFromWard = "active";
+            List<Ward> wards = new List<Ward>();
+            using (var db = new MedicalContext())
+            {
+                wards = db.Wards.ToList();
+            }
+            ViewBag.Wards = wards;
+            return View();
+        }
+        public JsonResult GetAllAdmitPatientByWard(int id)
+        {
+            List<Prescription> prescriptions = new List<Prescription>();
+            using (var db = new MedicalContext())
+            {
+                var info = from a in db.Appointment
+                           join p in db.Registers
+                               on a.PatientId equals p.Id
+                           join d in db.Doctors
+                               on a.DoctorId equals d.Id
+                           where a.WardId == id
+                           select new
+                           {
+                               appointmentId = a.Id,
+                               PatientName = p.Name,
+                               PatientAge = p.Age,
+                               patientAddress = p.Address,
+                               DoctorName = d.Name,
+                           };
+
+                foreach (var k in info)
+                {
+                    Prescription pres = new Prescription();
+                    pres.Id = k.appointmentId;
+                    pres.PatientName = privacy.Decrypt(k.PatientName);
+                    pres.PatientAge = k.PatientAge;
+                    pres.PatientAddress = privacy.Decrypt(k.patientAddress);
+                    pres.DoctorName = privacy.Decrypt(k.DoctorName);
+                    prescriptions.Add(pres);
+                }
+            }
+            return Json(prescriptions);
+        }
+        public JsonResult ReleasePatientFromWards(int id, int wardId)
+        {
+            using (var db = new MedicalContext())
+            {
+                PatientAppointmentModel appoint = db.Appointment.Find(id);
+                appoint.WardId = 0;
+                db.SaveChanges();
+            }
+            return Json(1);
+        }
 
 	}
 }

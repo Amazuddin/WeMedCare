@@ -92,9 +92,7 @@ namespace WeMedCare.Controllers
 
             using (var ctx = new MedicalContext())
             {
-                var a = ctx.BloodDonor.Where(s => s.Bloodid == +id);
-                //var a = ctx.Doctors.SqlQuery("Select Name, Degree, Fees, Schedule from DoctorDetailsModel where SpecialistId=" + id);
-
+                var a = ctx.BloodDonor.Where(s => s.Bloodid == id);
                 foreach (var k in a)
                 {
                     BloodDonorModel doc = new BloodDonorModel();
@@ -112,7 +110,7 @@ namespace WeMedCare.Controllers
         {
             ViewBag.Donor = "active";
             if (Session["PatientId"] == null)
-                return RedirectToAction("LogIn", "Security");
+            return RedirectToAction("LogIn", "Security");
             List<BloodModel> bloodCategories;
 
 
@@ -242,6 +240,11 @@ namespace WeMedCare.Controllers
         public ActionResult Tutorial()
         {
             ViewBag.Tutorial = "active";
+            return View();
+        }
+        public ActionResult HospitalContact()
+        {
+            ViewBag.HospitalContact = "active";
             return View();
         }
         public ActionResult Reciption()
@@ -385,6 +388,26 @@ namespace WeMedCare.Controllers
                 return RedirectToAction("PatientProfile", "Medical");
 
             }
+        }
+        //nurse profile
+        public ActionResult NurseProfile()
+        {
+            ViewBag.NurseProfile = "active";
+            Nurse nurse = new Nurse();
+            int nurseid = Convert.ToInt32(Session["NurseId"]);
+            using (var db = new MedicalContext())
+            {
+                var u = db.Nurses.Where(k => k.Id == nurseid).Select(c => new { c.Name,c.Designation,c.Number});
+                foreach (var j in u)
+                {
+                    nurse.Name = privacy.Decrypt(j.Name);
+                    nurse.Designation = privacy.Decrypt(j.Designation);
+                    nurse.Number = privacy.Decrypt(j.Number);
+                }
+                ViewBag.nurse = nurse;
+                return View();
+            }
+
         }
         //reception profile
         public ActionResult ReceptionistProfile()
@@ -767,7 +790,23 @@ namespace WeMedCare.Controllers
             }
             return Json(prescriptions);
         }
-
+        public ActionResult PatientHistory(int id)
+        {
+            List<PatientAppointmentModel> appointmentlist = new List<PatientAppointmentModel>();
+            using (var db = new MedicalContext())
+            {
+                int s = db.Appointment.Where(c => c.Id == id).Select(c => c.PatientId).FirstOrDefault();
+                var data = db.Appointment.Where(c => c.PatientId == s).Select(c => new { c.Prescription,c.Date });
+                foreach (var d in data)
+                {
+                    PatientAppointmentModel appoint = new PatientAppointmentModel();
+                    appoint.Prescription = d.Prescription;
+                    appoint.Date = d.Date;
+                    appointmentlist.Add(appoint);
+                }
+            }
+            return View(appointmentlist);
+        }
        
 	}
 }
