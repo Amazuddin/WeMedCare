@@ -4,9 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title WeMedCare</title>
-    
-
-   
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -44,7 +41,7 @@
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link  @ViewBag.Appointment" href="@Url.Action("Appointment","Medical")">Appointment</a>
                     <a class="nav-item nav-link @ViewBag.Tutorial" href="@Url.Action("Tutorial","Medical")">Tutorial</a>
-                    <a class="nav-item nav-link @ViewBag.HospitalContact" href="@Url.Action("Information", "Medical")">Information</a>
+                    <a class="nav-item nav-link @ViewBag.HospitalContact" href="@Url.Action("Information", "Medical")">Notification<sup><span id="patientnotification" style="display: none;" class="notified fa fa-bell"> @Session["PatientNotification"]</span></sup></a>
                     <a class="nav-item nav-link  @ViewBag.PatientProfile" href="@Url.Action("PatientProfile", "Medical")">Profile</a>
                     <a class="nav-item nav-link " href="@Url.Action("PatientLogout", "Security")">Logout</a>
                 </div>
@@ -74,7 +71,6 @@
                     <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index","Medical")">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link @ViewBag.DoctorAppointment" href="@Url.Action("DoctorAppointment", "Medical")">Appointment</a>
                     <a class="nav-item nav-link @ViewBag.PatientInWard" href="@Url.Action("PatientInWard","Medical")">PatientInWard</a>
-                    <a class="nav-item nav-link @ViewBag.Reciption" href="@Url.Action("Reciption", "Medical")">Information</a>
                     <a class="nav-item nav-link  @ViewBag.ReciptionistProfile" href="@Url.Action("ReceptionistProfile","Medical")">Profile</a>
                     <a class="nav-item nav-link " href="@Url.Action("ReceptionistLogout", "Security")">Logout</a>
 
@@ -162,3 +158,11 @@
     
 
 
+<script>
+    var k = parseInt($('#patientnotification').html())||0;
+    console.log(k);
+   
+    if (k > 0) {
+        $('#patientnotification').show();
+    }
+</script>

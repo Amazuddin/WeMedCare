@@ -43,12 +43,17 @@ namespace WeMedCare.Controllers
                     var p = db.Registers.Where(c => c.Email == email && c.Password == password).Select(c => new { c.Id, c.Name }).ToList();
                     if (p.Any())
                     {
+                        int i = 0;
                         foreach (var k in p)
                         {
+                            i = k.Id;
                             Session["PatientId"] = k.Id;
                             Session["PatientName"] = k.Name;
 
                         }
+                        int notification = db.Appointment.Where(c => c.PatientId == i && c.Accepted==3).Select(c => c.Id).ToList().Count;
+
+                        Session["PatientNotification"] = notification;
                         return RedirectToAction("Index", "Medical");
                     }
                     else

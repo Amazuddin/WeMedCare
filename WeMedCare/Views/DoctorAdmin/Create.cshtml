@@ -1,5 +1,6 @@
 ﻿@using System.Diagnostics.Eventing.Reader
 @using System.Web.UI.WebControls
+@using WeMedCare.Models
 @model WeMedCare.Models.DoctorDetailsModel
 
 @{
@@ -85,7 +86,7 @@
                     <div class="col-md-6">
                         <select name="Id" class="form-control">
                             <option value="">Select Specialist</option>
-                            @foreach (var s in ViewBag.Specialist)
+                            @foreach (SpecialistModel s in ViewBag.Specialist)
                             {
                                 <option value="@s.Id">@s.Specialist</option>
                             }

@@ -18,5 +18,6 @@ namespace WeMedCare.Models
         public string Sex { get; set; }
         public string Prescription { get; set; }
         public int WardId { get; set; }
+        public int Accepted { get; set; }
     }
 }

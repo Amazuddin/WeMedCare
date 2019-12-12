@@ -165,7 +165,7 @@ namespace WeMedCare.Controllers
 
             using (var ctx = new MedicalContext())
             {
-                var a = ctx.Doctors.Where(s => s.SpecialistId == +id);
+                var a = ctx.Doctors.Where(s => s.SpecialistId == id);
                 
 
                 foreach (var k in a)
@@ -189,7 +189,7 @@ namespace WeMedCare.Controllers
             List<SpecialistModel> specialists;
             using (var db = new MedicalContext())
             {
-                
+                    patientAppointment.Accepted = 3;
                     db.Appointment.Add(patientAppointment);
                     db.SaveChanges();
                    
@@ -420,9 +420,9 @@ namespace WeMedCare.Controllers
                 var q = db.Receptionist.Where(k => k.Id == receptionistid).Select(c => new { c.Name,c.Address, c.PhoneNo });
                 foreach (var j in q)
                 {
-                    receptionist.Name = j.Name;
-                    receptionist.Address = j.Address;
-                    receptionist.PhoneNo = j.PhoneNo;
+                    receptionist.Name = privacy.Decrypt(j.Name);
+                    receptionist.Address = privacy.Decrypt(j.Address);
+                    receptionist.PhoneNo = privacy.Decrypt(j.PhoneNo);
                 }
                 ViewBag.Receptionist = receptionist;
                 return View();
@@ -439,9 +439,9 @@ namespace WeMedCare.Controllers
                 var q = db.Receptionist.Where(k => k.Id == receptionistid).Select(c => new { c.Name, c.Address, c.PhoneNo });
                 foreach (var j in q)
                 {
-                    receptionist.Name = j.Name;
-                    receptionist.Address = j.Address;
-                    receptionist.PhoneNo = j.PhoneNo;
+                    receptionist.Name = privacy.Decrypt(j.Name);
+                    receptionist.Address = privacy.Decrypt(j.Address);
+                    receptionist.PhoneNo = privacy.Decrypt(j.PhoneNo);
                 }
                 ViewBag.Receptionist = receptionist;
                 return View();
@@ -457,9 +457,9 @@ namespace WeMedCare.Controllers
                 Receptionist pa = db.Receptionist.Single(e => e.Id == id);
                 if (pa.Email == useremail)
                 {
-                    pa.Name = receptionist.Name;
-                    pa.Address = receptionist.Address;
-                    pa.PhoneNo = receptionist.PhoneNo;
+                    pa.Name = privacy.Encrypt(receptionist.Name);
+                    pa.Address = privacy.Encrypt(receptionist.Address);
+                    pa.PhoneNo = privacy.Encrypt(receptionist.PhoneNo);
                     db.SaveChanges();
                     return RedirectToAction("ReceptionistProfile", "Medical");
                 }
@@ -717,6 +717,21 @@ namespace WeMedCare.Controllers
            
             using (var db = new MedicalContext())
             {
+
+
+                List<PatientAppointmentModel> lappoint = (from a in db.Appointment
+                                         where a.PatientId == id && a.Accepted== 3
+                                         select a).ToList();
+                foreach (PatientAppointmentModel p in lappoint)
+                {
+                    p.Accepted = 1;
+                }
+                db.SaveChanges();
+
+                Session["PatientNotification"] = 0;
+
+
+
                 var q = (from ab in db.Doctors
                          join p in db.Specialist on ab.SpecialistId equals p.Id
                     

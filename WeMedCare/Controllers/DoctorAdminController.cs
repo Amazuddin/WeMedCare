@@ -97,7 +97,7 @@ namespace WeMedCare.Controllers
             {
                 ViewBag.Message = "Email Already exists";
             }
-
+            ViewBag.Specialist = db.Specialist.ToList();
             return View(doctordetailsmodel);
             //return RedirectToAction("Create");
         }
